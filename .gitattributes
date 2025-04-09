@@ -26,3 +26,13 @@
 *.dll binary
 *.exe binary
 *.pdf binary
+
+
+# Auto normalize line endings
+* text=auto
+
+# Force specific line endings for certain types
+*.cs text eol=lf
+*.shader text eol=lf
+*.obj text eol=lf
+*.txt text eol=lf

@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 9f3fe64feeddd424fb22774e7a98a1b7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 830907b47b00c374bae896897838d09a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -77,7 +77,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Backwards_strength: 0.002
+    - _Backwards_strength: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -91,12 +91,12 @@ Material:
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Sideways_strength: 0.008
+    - _Sideways_strength: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Tilt_strength_x: 4
-    - _Tilt_strength_y: 4
+    - _Tilt_strength_x: 1
+    - _Tilt_strength_y: 5
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
