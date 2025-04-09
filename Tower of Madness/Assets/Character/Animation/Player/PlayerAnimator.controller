@@ -9,7 +9,7 @@ BlendTree:
   m_Name: Idle/Walk/Run
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 3f43e40eca32d6f45a59e551ae67272c, type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: 6e2d0b4c2eb1ec8469c723ead2e6eb91, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -17,7 +17,7 @@ BlendTree:
     m_DirectBlendParameter: CharacterSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: cd8ad15fd9903f9439d2237007b01ba0, type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: 9b3a89e501a45524a8e5f1db82efdad2, type: 3}
     m_Threshold: 5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -25,7 +25,7 @@ BlendTree:
     m_DirectBlendParameter: CharacterSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: bfebc72d1c8d92e468ef3d7c21855b41, type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: 994520f82073852478b42abfb6b92296, type: 3}
     m_Threshold: 7
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1

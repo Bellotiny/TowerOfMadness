@@ -1,0 +1,28 @@
+# Normalize text files to LF in repo, but convert to CRLF on Windows checkout
+* text=auto
+
+# Unity YAML files (e.g. scenes, prefabs, materials)
+*.meta text eol=lf
+*.unity text eol=lf
+*.prefab text eol=lf
+*.mat text eol=lf
+*.anim text eol=lf
+*.asset text eol=lf
+*.controller text eol=lf
+
+# Scripts
+*.cs text eol=lf
+*.shader text eol=lf
+*.cginc text eol=lf
+
+# Ignore line endings for binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.fbx binary
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.dll binary
+*.exe binary
+*.pdf binary
