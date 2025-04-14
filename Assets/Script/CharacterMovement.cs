@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))] // Ensures that a Rigidbody component is attached to the GameObject
 public class CharacterMovement : MonoBehaviour
 {
+    private Animator animator;
     // ============================== Movement Settings ==============================
     [Header("Movement Settings")]
     [SerializeField] private float baseWalkSpeed = 5f;    // Base speed when walking
@@ -15,7 +16,9 @@ public class CharacterMovement : MonoBehaviour
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 5f;        // Jump force applied to the character
     [SerializeField] private float groundCheckDistance = 1.1f; // Distance to check for ground contact (Raycast)
-
+    private int jumpCount = 0; // Tracks the number of jumps
+    private float jumpTimeWindow = 0.8f; // Time window for detecting second jump
+    private float lastJumpTime = 0f;
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
 
@@ -41,10 +44,13 @@ public class CharacterMovement : MonoBehaviour
     public bool IsGrounded => 
         Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, groundCheckDistance);
 
+    private bool isInAir = false;
     /// <summary>
     /// Checks if the player is currently holding the "Run" button.
     /// </summary>
-    private bool IsRunning => Input.GetButton("Run");
+    private bool IsRunning = false;
+    public bool doFlip = false;
+    private bool isFlipping = false;
 
     // ============================== Unity Built-in Methods ==============================
 
@@ -61,6 +67,12 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (IsGrounded && !isInAir)  // Only reset when we are grounded and was previously in the air
+        {
+            //Debug.Log("Resetting jump count and flip after landing.");
+            jumpCount = 0;  // Reset jump count after landing
+            isFlipping = false;  // Stop flip animation when grounded
+        }
         RegisterInput(); // Collect player input
     }
 
@@ -80,6 +92,7 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void InitializeComponents()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         rb.freezeRotation = true; // Prevent Rigidbody from rotating due to physics interactions
         rb.interpolation = RigidbodyInterpolation.Interpolate; // Smooth physics interpolation
@@ -107,6 +120,11 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jumpRequest = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            IsRunning = !IsRunning;
         }
     }
 
@@ -160,8 +178,31 @@ public class CharacterMovement : MonoBehaviour
         // Apply jump force only if jump was requested and the character is grounded
         if (jumpRequest && IsGrounded)
         {
+            Vector3 currentVelocity = rb.velocity; // Get the current velocity
+            float horizontalVelocityFactor = 1.0f; // Modify this to scale the horizontal velocity preservation
+            rb.velocity = new Vector3(currentVelocity.x * horizontalVelocityFactor, 0f, currentVelocity.z * horizontalVelocityFactor);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply force upwards
+            //Check first jump
+            jumpCount = 1;
+            lastJumpTime = Time.time;
+            isFlipping = false;
+            isInAir = true;
             jumpRequest = false; // Reset jump request after applying jump
+            //Debug.Log("First jump executed!!!!!!!!!!!!");
+        }else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
+        {
+            // Second jump (Flip)
+            Vector3 currentVelocity = rb.velocity; // Get the current velocity
+            float flipHorizontalVelocityFactor = 0.75f; // Scale horizontal velocity on flip jump, if needed
+
+            rb.velocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
+            rb.AddForce(Vector3.up * (jumpForce * 0.8f), ForceMode.Impulse); // Higher force for flip
+            //PlayFlipSound(); // Play sound
+            jumpCount = 2;
+            isFlipping = true;
+            animator.SetBool("isFlipping", isFlipping);
+            jumpRequest = false;
+            isInAir = false;
         }
     }
 

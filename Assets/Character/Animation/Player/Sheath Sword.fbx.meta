@@ -5,10 +5,10 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 2
-    materialName: 0
+    materialImportMode: 1
+    materialName: 1
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -17,7 +17,14 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 370.300018 mm\n\t'mixamorig:LeftLeg' : position error =
+      893.129272 mm\n\t'mixamorig:LeftFoot' : position error = 1054.758545 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 366.666016 mm\n\t'mixamorig:RightUpLeg' : position error
+      = 370.244904 mm\n\t'mixamorig:RightLeg' : position error = 892.893005 mm\n\t'mixamorig:RightFoot'
+      : position error = 1054.774902 mm\n\t'mixamorig:RightToeBase' : position error
+      = 361.510590 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -40,14 +47,14 @@ ModelImporter:
       lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 2.35
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
