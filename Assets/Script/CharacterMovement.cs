@@ -17,7 +17,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;        // Jump force applied to the character
     [SerializeField] private float groundCheckDistance = 1.1f; // Distance to check for ground contact (Raycast)
     private int jumpCount = 0; // Tracks the number of jumps
-    private float jumpTimeWindow = 0.8f; // Time window for detecting second jump
+    private float jumpTimeWindow = 0.3f; // Time window for detecting second jump
     private float lastJumpTime = 0f;
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
@@ -50,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private bool IsRunning = false;
     public bool doFlip = false;
-    private bool isFlipping = false;
+    //private bool isFlipping = false;
 
     // ============================== Unity Built-in Methods ==============================
 
@@ -71,8 +71,9 @@ public class CharacterMovement : MonoBehaviour
         {
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
-            isFlipping = false;  // Stop flip animation when grounded
+            doFlip = false;  // Stop flip animation when grounded
         }
+        
         RegisterInput(); // Collect player input
     }
 
@@ -175,8 +176,15 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void HandleJump()
     {
+        if(jumpRequest){
+            Debug.Log("There was a jumpRequest!!!!!!!");
+            Debug.Log("IsGrounded: " + IsGrounded);
+            Debug.Log("isInAir: " + isInAir);
+            Debug.Log("jumpCount: " + jumpCount);
+            Debug.Log("doFlip: " + doFlip);
+        }
         // Apply jump force only if jump was requested and the character is grounded
-        if (jumpRequest && IsGrounded)
+        if (jumpRequest && IsGrounded && doFlip == false)
         {
             Vector3 currentVelocity = rb.velocity; // Get the current velocity
             float horizontalVelocityFactor = 1.0f; // Modify this to scale the horizontal velocity preservation
@@ -185,9 +193,10 @@ public class CharacterMovement : MonoBehaviour
             //Check first jump
             jumpCount = 1;
             lastJumpTime = Time.time;
-            isFlipping = false;
+            //isFlipping = false;
             isInAir = true;
             jumpRequest = false; // Reset jump request after applying jump
+            doFlip = true;
             //Debug.Log("First jump executed!!!!!!!!!!!!");
         }else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
         {
@@ -198,9 +207,11 @@ public class CharacterMovement : MonoBehaviour
             rb.velocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
             rb.AddForce(Vector3.up * (jumpForce * 0.8f), ForceMode.Impulse); // Higher force for flip
             //PlayFlipSound(); // Play sound
-            jumpCount = 2;
-            isFlipping = true;
-            animator.SetBool("isFlipping", isFlipping);
+            jumpCount = 0;
+            //isFlipping = true;
+            //animator.SetBool("isFlipping", isFlipping);
+            animator.SetTrigger("doFlip");
+            doFlip = false;
             jumpRequest = false;
             isInAir = false;
         }
