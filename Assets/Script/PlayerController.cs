@@ -25,4 +25,8 @@ public class PlayerController : MonoBehaviour
             //animator.SetTrigger("doRoll");
         }
     }
+    void Equip()
+    {
+        // equip weapon
+    }
 }

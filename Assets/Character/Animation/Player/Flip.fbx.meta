@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1b8dfa4cf11e80344b9af3adc40c910f
+guid: e48c84e1e5c63ce4cb676c2df41abb3c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,7 +17,11 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 214.448761 mm\n\t'mixamorig:LeftLeg' : position error =
+      1077.366211 mm\n\t'mixamorig:LeftFoot' : position error = 1014.126282 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 296.157990 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -33,21 +37,21 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Sprint Forward
+      name: Flip
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 15
+      lastFrame: 65
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: 2.35
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
