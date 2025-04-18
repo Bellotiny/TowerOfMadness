@@ -6,6 +6,12 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     private Animator animator;
+    // ============================== Weapons ==============================
+    [Header("Weapons")]
+    [SerializeField] private GameObject sword;
+    [SerializeField] private GameObject holster;
+    private GameObject holsteredSword;
+
     // ============================== Movement Settings ==============================
     [Header("Movement Settings")]
     [SerializeField] private float baseWalkSpeed = 5f;    // Base speed when walking
@@ -50,7 +56,7 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private bool IsRunning = false;
     public bool doFlip = false;
-    //private bool isFlipping = false;
+    private bool isSwordEquipped = false;
 
     // ============================== Unity Built-in Methods ==============================
 
@@ -72,6 +78,7 @@ public class CharacterMovement : MonoBehaviour
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
             doFlip = false;  // Stop flip animation when grounded
+            isInAir = false;
         }
         
         RegisterInput(); // Collect player input
@@ -94,9 +101,20 @@ public class CharacterMovement : MonoBehaviour
     private void InitializeComponents()
     {
         animator = GetComponent<Animator>();
+        if (animator == null){
+            Debug.LogError("Animator component missing!");
+        }
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         rb.freezeRotation = true; // Prevent Rigidbody from rotating due to physics interactions
         rb.interpolation = RigidbodyInterpolation.Interpolate; // Smooth physics interpolation
+
+        sword = sword.transform.Find("SwordParent").gameObject;
+        sword = sword.transform.Find("Sword").gameObject;
+        holsteredSword = holster.transform.Find("Holstered Sword").gameObject;
+        // sword.transform.SetParent(mixamorig:RightHand);
+        // sword.transform.localPosition = Vector3.zero; // Adjust if needed
+        // sword.transform.localRotation = Quaternion.identity;
+        //sword.SetActive(false);
 
         // Assign the main camera if available
         if (Camera.main)
@@ -126,6 +144,14 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             IsRunning = !IsRunning;
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+            ToggleSword();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q)){
+            SlashAttack();
         }
     }
 
@@ -186,6 +212,7 @@ public class CharacterMovement : MonoBehaviour
         // Apply jump force only if jump was requested and the character is grounded
         if (jumpRequest && IsGrounded && doFlip == false)
         {
+            //FIRST JUMP
             Vector3 currentVelocity = rb.velocity; // Get the current velocity
             float horizontalVelocityFactor = 1.0f; // Modify this to scale the horizontal velocity preservation
             rb.velocity = new Vector3(currentVelocity.x * horizontalVelocityFactor, 0f, currentVelocity.z * horizontalVelocityFactor);
@@ -200,20 +227,20 @@ public class CharacterMovement : MonoBehaviour
             //Debug.Log("First jump executed!!!!!!!!!!!!");
         }else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
         {
-            // Second jump (Flip)
+            // SECOND JUMP (Flip)
             Vector3 currentVelocity = rb.velocity; // Get the current velocity
-            float flipHorizontalVelocityFactor = 0.75f; // Scale horizontal velocity on flip jump, if needed
+            float flipHorizontalVelocityFactor = 1.0f; // Scale horizontal velocity on flip jump, if needed
 
             rb.velocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
-            rb.AddForce(Vector3.up * (jumpForce * 0.8f), ForceMode.Impulse); // Higher force for flip
+            rb.AddForce(Vector3.up * (jumpForce * 1.2f), ForceMode.Impulse); // Higher force for flip
             //PlayFlipSound(); // Play sound
-            jumpCount = 0;
+            jumpCount = 2;
             //isFlipping = true;
             //animator.SetBool("isFlipping", isFlipping);
             animator.SetTrigger("doFlip");
             doFlip = false;
             jumpRequest = false;
-            isInAir = false;
+            //isInAir = false;
         }
     }
 
@@ -251,5 +278,37 @@ public class CharacterMovement : MonoBehaviour
 
         // Apply the new velocity directly
         rb.linearVelocity = newVelocity;
+    }
+
+    private void ToggleSword(){
+        isSwordEquipped = !isSwordEquipped;
+        
+        //Transform holsteredBow = holster.transform.Find("Holstered Bow");
+
+        if(animator != null){
+            if(isSwordEquipped){
+                holsteredSword.SetActive(false);
+                sword.SetActive(true);
+                animator.SetTrigger("EquipSword");
+            }
+            else{
+                if(animator != null){
+                    animator.SetTrigger("SheathSword");
+                }
+                
+                sword.SetActive(false);
+                holsteredSword.SetActive(true);
+            }
+            
+        }
+    }
+
+    private void SlashAttack(){
+        if(animator != null){
+            if(isSwordEquipped){
+                animator.SetTrigger("doAttack");
+            }
+            
+        }
     }
 }
