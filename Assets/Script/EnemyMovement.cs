@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Animator animator;
     void Start()
     {
-        
+        animator.GetComponent<Animator>();
     }
 
     // Update is called once per frame
