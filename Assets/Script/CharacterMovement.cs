@@ -6,6 +6,12 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     private Animator animator;
+    // ============================== Weapons ==============================
+    [Header("Weapons")]
+    [SerializeField] private GameObject sword;
+    [SerializeField] private GameObject holster;
+    private GameObject holsteredSword;
+
     // ============================== Movement Settings ==============================
     [Header("Movement Settings")]
     [SerializeField] private float baseWalkSpeed = 5f;    // Base speed when walking
@@ -50,7 +56,7 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private bool IsRunning = false;
     public bool doFlip = false;
-    //private bool isFlipping = false;
+    private bool isSwordEquipped = false;
 
     // ============================== Unity Built-in Methods ==============================
 
@@ -95,9 +101,20 @@ public class CharacterMovement : MonoBehaviour
     private void InitializeComponents()
     {
         animator = GetComponent<Animator>();
+        if (animator == null){
+            Debug.LogError("Animator component missing!");
+        }
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         rb.freezeRotation = true; // Prevent Rigidbody from rotating due to physics interactions
         rb.interpolation = RigidbodyInterpolation.Interpolate; // Smooth physics interpolation
+
+        sword = sword.transform.Find("SwordParent").gameObject;
+        sword = sword.transform.Find("Sword").gameObject;
+        holsteredSword = holster.transform.Find("Holstered Sword").gameObject;
+        // sword.transform.SetParent(mixamorig:RightHand);
+        // sword.transform.localPosition = Vector3.zero; // Adjust if needed
+        // sword.transform.localRotation = Quaternion.identity;
+        //sword.SetActive(false);
 
         // Assign the main camera if available
         if (Camera.main)
@@ -127,6 +144,14 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             IsRunning = !IsRunning;
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+            ToggleSword();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q)){
+            SlashAttack();
         }
     }
 
@@ -253,5 +278,37 @@ public class CharacterMovement : MonoBehaviour
 
         // Apply the new velocity directly
         rb.velocity = newVelocity;
+    }
+
+    private void ToggleSword(){
+        isSwordEquipped = !isSwordEquipped;
+        
+        //Transform holsteredBow = holster.transform.Find("Holstered Bow");
+
+        if(animator != null){
+            if(isSwordEquipped){
+                holsteredSword.SetActive(false);
+                sword.SetActive(true);
+                animator.SetTrigger("EquipSword");
+            }
+            else{
+                if(animator != null){
+                    animator.SetTrigger("SheathSword");
+                }
+                
+                sword.SetActive(false);
+                holsteredSword.SetActive(true);
+            }
+            
+        }
+    }
+
+    private void SlashAttack(){
+        if(animator != null){
+            if(isSwordEquipped){
+                animator.SetTrigger("doAttack");
+            }
+            
+        }
     }
 }
