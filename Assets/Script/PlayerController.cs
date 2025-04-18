@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        movement = GetComponent<CharacterMovement>();
-        rb = GetComponent<Rigidbody>();
+        movement = GetComponentInParent<CharacterMovement>();
+        rb = GetComponentInParent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -24,5 +24,9 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonUp("Fire1")){
             //animator.SetTrigger("doRoll");
         }
+    }
+    void Equip()
+    {
+        // equip weapon
     }
 }
