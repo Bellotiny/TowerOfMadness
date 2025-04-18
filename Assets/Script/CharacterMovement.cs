@@ -72,6 +72,7 @@ public class CharacterMovement : MonoBehaviour
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
             doFlip = false;  // Stop flip animation when grounded
+            isInAir = false;
         }
         
         RegisterInput(); // Collect player input
@@ -186,6 +187,7 @@ public class CharacterMovement : MonoBehaviour
         // Apply jump force only if jump was requested and the character is grounded
         if (jumpRequest && IsGrounded && doFlip == false)
         {
+            //FIRST JUMP
             Vector3 currentVelocity = rb.velocity; // Get the current velocity
             float horizontalVelocityFactor = 1.0f; // Modify this to scale the horizontal velocity preservation
             rb.velocity = new Vector3(currentVelocity.x * horizontalVelocityFactor, 0f, currentVelocity.z * horizontalVelocityFactor);
@@ -200,20 +202,20 @@ public class CharacterMovement : MonoBehaviour
             //Debug.Log("First jump executed!!!!!!!!!!!!");
         }else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
         {
-            // Second jump (Flip)
+            // SECOND JUMP (Flip)
             Vector3 currentVelocity = rb.velocity; // Get the current velocity
-            float flipHorizontalVelocityFactor = 0.75f; // Scale horizontal velocity on flip jump, if needed
+            float flipHorizontalVelocityFactor = 1.0f; // Scale horizontal velocity on flip jump, if needed
 
             rb.velocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
-            rb.AddForce(Vector3.up * (jumpForce * 0.8f), ForceMode.Impulse); // Higher force for flip
+            rb.AddForce(Vector3.up * (jumpForce * 1.2f), ForceMode.Impulse); // Higher force for flip
             //PlayFlipSound(); // Play sound
-            jumpCount = 0;
+            jumpCount = 2;
             //isFlipping = true;
             //animator.SetBool("isFlipping", isFlipping);
             animator.SetTrigger("doFlip");
             doFlip = false;
             jumpRequest = false;
-            isInAir = false;
+            //isInAir = false;
         }
     }
 
