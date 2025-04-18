@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("CharacterSpeed", rb.linearVelocity.magnitude);
+        animator.SetFloat("CharacterSpeed", rb.velocity.magnitude);
         animator.SetBool("IsGrounded", movement.IsGrounded);
 
         if(Input.GetButtonUp("Fire1")){
