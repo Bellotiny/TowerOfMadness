@@ -22,4 +22,6 @@ public class PractiveVerticalMovement : MonoBehaviour
         float offset = Mathf.PingPong(Time.time * moveSpeed, moveDistance);
         transform.position = new Vector3(startPos.x, startPos.y + offset, startPos.z);
     }
+
+   
 }
