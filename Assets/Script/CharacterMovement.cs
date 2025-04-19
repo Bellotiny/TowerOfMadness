@@ -110,11 +110,12 @@ public class CharacterMovement : MonoBehaviour
 
         sword = sword.transform.Find("SwordParent").gameObject;
         sword = sword.transform.Find("Sword").gameObject;
+        sword.SetActive(false);
         holsteredSword = holster.transform.Find("Holstered Sword").gameObject;
+        holsteredSword.SetActive(true);
         // sword.transform.SetParent(mixamorig:RightHand);
         // sword.transform.localPosition = Vector3.zero; // Adjust if needed
         // sword.transform.localRotation = Quaternion.identity;
-        //sword.SetActive(false);
 
         // Assign the main camera if available
         if (Camera.main)
@@ -234,7 +235,7 @@ public class CharacterMovement : MonoBehaviour
             rb.velocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
             rb.AddForce(Vector3.up * (jumpForce * 1.2f), ForceMode.Impulse); // Higher force for flip
             //PlayFlipSound(); // Play sound
-            jumpCount = 2;
+            jumpCount = 0;
             //isFlipping = true;
             //animator.SetBool("isFlipping", isFlipping);
             animator.SetTrigger("doFlip");

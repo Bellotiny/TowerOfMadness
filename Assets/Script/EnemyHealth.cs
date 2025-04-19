@@ -20,16 +20,19 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage){
         currentHealth -= damage;
         animator.SetTrigger("GotHit");
+        Debug.Log("Centinel Got Hit!!");
+        Debug.Log("Current Health: " + currentHealth);
         //healthbar.value = currentHealth;
         if(currentHealth <= 0){
             Die();
         }
     }
-
     public void Die(){
-        if(GameManager.Instance != null){
-            GameManager.Instance.RestartGame();
-        }
+        animator.SetTrigger("Die");
+    }
+    public void OnDeathAnimationEnd()
+    {
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
