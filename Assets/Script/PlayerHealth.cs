@@ -1,37 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
-    // public Slider healthbar;
-    
-    // void Start()
-    // {
-    //     currentHealth = maxHealth;
-    //     healthbar.maxValue = maxHealth;
-    //     healthbar.value = currentHealth;
-    // }
+    public int currentHealth;
 
-    // public void TakeDamage(int damage){
-    //     currentHealth -= damage;
-    //     healthbar.value = currentHealth;
-    //     if(currentHealth <= 0){
-    //         Die();
-    //     }
-    // }
+    public TMP_Text healthTextUI; 
 
-    // public void Die(){
-    //     if(GameManager.Instance != null){
-    //         GameManager.Instance.RestartGame();
-    //     }
-    // }
+    void Start()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthText();
+    }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthText();
+    }
+
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthText();
+    }
+
+    void UpdateHealthText()
+    {
+        if (healthTextUI != null)
+        {
+            healthTextUI.text = "Health: " + currentHealth.ToString();
+        }
+    }
 }
