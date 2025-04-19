@@ -104,6 +104,7 @@ public class CharacterMovement : MonoBehaviour
         if (animator == null){
             Debug.LogError("Animator component missing!");
         }
+        animator.applyRootMotion = false;
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         rb.freezeRotation = true; // Prevent Rigidbody from rotating due to physics interactions
         rb.interpolation = RigidbodyInterpolation.Interpolate; // Smooth physics interpolation

@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        movement = GetComponentInParent<CharacterMovement>();
-        rb = GetComponentInParent<Rigidbody>();
+        movement = GetComponent<CharacterMovement>();
+        rb = GetComponent<Rigidbody>();
         foreach( Collider attackCollider in attackColliders)
         {
             attackCollider.enabled = false; // Disable collider at start
