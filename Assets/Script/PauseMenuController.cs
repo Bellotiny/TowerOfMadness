@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuPanel;
-    private bool isPaused = false;
+    public static bool isPaused = false;
     
     void Start()
     {
