@@ -3675,6 +3675,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 942422342595164690, guid: fd1c9e52842e6ab4a9862b9c101dd59b, type: 3}
+      propertyPath: baseRunSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 942422342595164690, guid: fd1c9e52842e6ab4a9862b9c101dd59b, type: 3}
+      propertyPath: baseWalkSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4301978788082695045, guid: fd1c9e52842e6ab4a9862b9c101dd59b, type: 3}
       propertyPath: m_IsKinematic
       value: 0
