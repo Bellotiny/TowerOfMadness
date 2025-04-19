@@ -277,8 +277,8 @@ public class CharacterMovement : MonoBehaviour
         );
 
         // Apply the new velocity directly
-        //rb.velocity = newVelocity;
-        rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime); // valid for kinematic
+        rb.velocity = newVelocity;
+        //rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime); // valid for kinematic
 
     }
 
