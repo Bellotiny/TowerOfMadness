@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public Transform player; // Reference to the player's transform
-    public Vector3 offset; // Offset from the player to position the camera
+    public Transform player;
+    public Vector3 offset = new Vector3(0f, 2f, -5f);
+    public float smoothSpeed = 0.125f;
+    public float minDistance = 0.5f;  // How close the camera can get to the player
+    public LayerMask collisionLayers; // Layers the camera should collide with
 
-    public float smoothSpeed = 0.125f; // How smooth the camera movement is
-    public Vector3 velocity = Vector3.zero; // To handle the smooth movement
-
-    void Start()
-    {
-        // You can manually set the offset or use the initial position difference
-        if (player != null)
-        {
-            offset = transform.position - player.position;
-        }
-    }
+    private Vector3 velocity = Vector3.zero;
 
     void LateUpdate()
     {
         if (player != null)
         {
-            // Calculate the desired position
-            Vector3 desiredPosition = player.position + offset;
+            Vector3 desiredCameraPos = player.position + player.TransformDirection(offset);
 
-            // Smoothly move the camera towards the desired position
-            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
+            // Direction from player to desired camera position
+            Vector3 dir = desiredCameraPos - player.position;
+            float distance = dir.magnitude;
 
-            // Apply the smooth position to the camera
+            // Raycast from player to desired camera position
+            if (Physics.Raycast(player.position, dir.normalized, out RaycastHit hit, distance, collisionLayers))
+            {
+                // Move camera to hit point, slightly forward so it doesn't touch the wall
+                desiredCameraPos = hit.point - dir.normalized * minDistance;
+            }
+
+            // Smooth follow
+            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredCameraPos, ref velocity, smoothSpeed);
             transform.position = smoothedPosition;
 
-            // Optionally, make the camera look at the player
+            // Optional: always look at player
             transform.LookAt(player);
         }
     }
 }
+
