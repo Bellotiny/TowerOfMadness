@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;        // Jump force applied to the character
     [SerializeField] private float groundCheckDistance = 1.1f; // Distance to check for ground contact (Raycast)
     private int jumpCount = 0; // Tracks the number of jumps
-    private float jumpTimeWindow = 0.3f; // Time window for detecting second jump
+    private float jumpTimeWindow = 0.5f; // Time window for detecting second jump
     private float lastJumpTime = 0f;
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
@@ -73,14 +73,17 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (IsGrounded && !isInAir)  // Only reset when we are grounded and was previously in the air
+        if (IsGrounded && isInAir)  // Only reset when we are grounded and was previously in the air
         {
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
             doFlip = false;  // Stop flip animation when grounded
             isInAir = false;
         }
-        
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+    {
+        jumpRequest = true;
+    }
         RegisterInput(); // Collect player input
     }
 
