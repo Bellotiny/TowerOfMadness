@@ -840,7 +840,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: Idle/Walk/Run
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 6e2d0b4c2eb1ec8469c723ead2e6eb91, type: 3}
@@ -852,7 +852,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 9b3a89e501a45524a8e5f1db82efdad2, type: 3}
-    m_Threshold: 2
+    m_Threshold: 4
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -860,7 +860,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 994520f82073852478b42abfb6b92296, type: 3}
-    m_Threshold: 5
+    m_Threshold: 9
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -869,7 +869,7 @@ BlendTree:
   m_BlendParameter: CharacterSpeed
   m_BlendParameterY: CharacterSpeed
   m_MinThreshold: 0
-  m_MaxThreshold: 5
+  m_MaxThreshold: 9
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -1005,7 +1005,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: Idle/Walk/Run
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 6e2d0b4c2eb1ec8469c723ead2e6eb91, type: 3}
@@ -1017,7 +1017,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 9b3a89e501a45524a8e5f1db82efdad2, type: 3}
-    m_Threshold: 2
+    m_Threshold: 4
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -1025,7 +1025,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 994520f82073852478b42abfb6b92296, type: 3}
-    m_Threshold: 5
+    m_Threshold: 9
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -1034,7 +1034,7 @@ BlendTree:
   m_BlendParameter: CharacterSpeed
   m_BlendParameterY: CharacterSpeed
   m_MinThreshold: 0
-  m_MaxThreshold: 5
+  m_MaxThreshold: 9
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
