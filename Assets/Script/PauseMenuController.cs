@@ -29,7 +29,7 @@ public class PauseMenuController : MonoBehaviour
         //Show Pause Menu UI
         pauseMenuPanel.SetActive(true);
         //Freeze game time
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         //(Optional) Freeze audio
         //Audiolistener.pause = true;
         isPaused = true;
