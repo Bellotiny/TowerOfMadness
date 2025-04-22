@@ -7,12 +7,16 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private CharacterMovement movement;
     private Rigidbody rb;
-    // Start is called before the first frame update
+    public Collider[] attackColliders;
     void Start()
     {
         animator = GetComponent<Animator>();
-        movement = GetComponentInParent<CharacterMovement>();
-        rb = GetComponentInParent<Rigidbody>();
+        movement = GetComponent<CharacterMovement>();
+        rb = GetComponent<Rigidbody>();
+        foreach( Collider attackCollider in attackColliders)
+        {
+            attackCollider.enabled = false; // Disable collider at start
+        }
     }
 
     // Update is called once per frame
@@ -25,8 +29,19 @@ public class PlayerController : MonoBehaviour
             //animator.SetTrigger("doRoll");
         }
     }
-    void Equip()
+    public void EnableHitbox()
     {
-        // equip weapon
+        foreach( Collider attackCollider in attackColliders)
+        {
+            attackCollider.enabled = true;
+        }
     }
+    public void DisableHitbox()
+    {
+        foreach( Collider attackCollider in attackColliders)
+        {
+            attackCollider.enabled = false;
+        }
+    }
+
 }
