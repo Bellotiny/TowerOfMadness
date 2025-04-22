@@ -186,9 +186,9 @@ public class CharacterMovement : MonoBehaviour
         // Apply jump force only if jump was requested and the character is grounded
         if (jumpRequest && IsGrounded && doFlip == false)
         {
-            Vector3 currentVelocity = rb.velocity; // Get the current velocity
+            Vector3 currentVelocity = rb.linearVelocity; // Get the current velocity
             float horizontalVelocityFactor = 1.0f; // Modify this to scale the horizontal velocity preservation
-            rb.velocity = new Vector3(currentVelocity.x * horizontalVelocityFactor, 0f, currentVelocity.z * horizontalVelocityFactor);
+            rb.linearVelocity = new Vector3(currentVelocity.x * horizontalVelocityFactor, 0f, currentVelocity.z * horizontalVelocityFactor);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply force upwards
             //Check first jump
             jumpCount = 1;
@@ -201,10 +201,10 @@ public class CharacterMovement : MonoBehaviour
         }else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
         {
             // Second jump (Flip)
-            Vector3 currentVelocity = rb.velocity; // Get the current velocity
+            Vector3 currentVelocity = rb.linearVelocity; // Get the current velocity
             float flipHorizontalVelocityFactor = 0.75f; // Scale horizontal velocity on flip jump, if needed
 
-            rb.velocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
+            rb.linearVelocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
             rb.AddForce(Vector3.up * (jumpForce * 0.8f), ForceMode.Impulse); // Higher force for flip
             //PlayFlipSound(); // Play sound
             jumpCount = 0;
@@ -245,11 +245,11 @@ public class CharacterMovement : MonoBehaviour
         // Preserve the current Y velocity to maintain gravity effects
         Vector3 newVelocity = new Vector3(
             moveDirection.x * speed * speedMultiplier, 
-            rb.velocity.y, // Keep the existing Y velocity for jumping & gravity
+            rb.linearVelocity.y, // Keep the existing Y velocity for jumping & gravity
             moveDirection.z * speed * speedMultiplier
         );
 
         // Apply the new velocity directly
-        rb.velocity = newVelocity;
+        rb.linearVelocity = newVelocity;
     }
 }
