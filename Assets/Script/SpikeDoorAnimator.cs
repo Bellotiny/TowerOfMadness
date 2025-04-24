@@ -9,7 +9,7 @@ public class SpikeDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Trigger");
+            Debug.Log("Trigger Spike");
             spikeDoorAnimator.SetTrigger("SpikeOpen");
         }
     }
