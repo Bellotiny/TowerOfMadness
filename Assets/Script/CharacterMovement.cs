@@ -72,8 +72,8 @@ public class CharacterMovement : MonoBehaviour
     /// Called every frame, used to register player input.
     /// </summary>
     private void Update()
-    {
-        if (IsGrounded && !isInAir)  // Only reset when we are grounded and was previously in the air
+    {// && !isInAir
+        if (IsGrounded)  // Only reset when we are grounded and was previously in the air
         {
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
