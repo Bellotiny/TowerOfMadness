@@ -8,6 +8,8 @@ TagManager:
   - Sword
   - Snail
   - SpikeTrigger
+  - Trap
+  - GroundWarning
   layers:
   - Default
   - TransparentFX

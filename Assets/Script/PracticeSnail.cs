@@ -7,7 +7,7 @@ public class PracticeSnail : MonoBehaviour
 
    
     void OnTriggerEnter(Collider other){
-        Debug.Log("" + other.gameObject);
+        //Debug.Log("" + other.gameObject);
         if (other.CompareTag("Player")){
             Debug.Log("PLayer alert");
         }
