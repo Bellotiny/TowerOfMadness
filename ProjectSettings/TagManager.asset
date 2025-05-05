@@ -10,6 +10,8 @@ TagManager:
   - SpikeTrigger
   - Trap
   - GroundWarning
+  - WallWarning
+  - DoorKey
   layers:
   - Default
   - TransparentFX
