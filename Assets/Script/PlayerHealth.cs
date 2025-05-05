@@ -14,12 +14,12 @@ public class PlayerHealth : MonoBehaviour
         //UpdateHealthText();
     }
 
-    // public void TakeDamage(int damage)
-    // {
-    //     currentHealth -= damage;
-    //     currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-    //     //UpdateHealthText();
-    // }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        //UpdateHealthText();
+    }
 
     // public void Heal(int amount)
     // {
