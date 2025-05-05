@@ -186,9 +186,21 @@ PrefabInstance:
       propertyPath: m_text
       value: Find the key on these jar
       objectReference: {fileID: 0}
+    - target: {fileID: 869589422072644857, guid: 7cf77ffe8f6074c5d8ef2dafe04b8c31, type: 3}
+      propertyPath: m_margin.x
+      value: 5.5048676
+      objectReference: {fileID: 0}
+    - target: {fileID: 869589422072644857, guid: 7cf77ffe8f6074c5d8ef2dafe04b8c31, type: 3}
+      propertyPath: m_margin.z
+      value: 6.2374797
+      objectReference: {fileID: 0}
     - target: {fileID: 3208067053220092609, guid: 7cf77ffe8f6074c5d8ef2dafe04b8c31, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238622815798353653, guid: 7cf77ffe8f6074c5d8ef2dafe04b8c31, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 4602175377964729266, guid: 7cf77ffe8f6074c5d8ef2dafe04b8c31, type: 3}
       propertyPath: m_LocalPosition.x
