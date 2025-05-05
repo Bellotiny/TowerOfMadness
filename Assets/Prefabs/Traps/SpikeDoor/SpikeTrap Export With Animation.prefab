@@ -74,6 +74,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91efdff2e0f8b41a684f4e9e550e308a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2792876669273421726}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91efdff2e0f8b41a684f4e9e550e308a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 896017981008588817}
   m_SourcePrefab: {fileID: 100100000, guid: 91efdff2e0f8b41a684f4e9e550e308a, type: 3}
 --- !u!1 &5462231179739250315 stripped
 GameObject:
@@ -113,4 +116,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d91d0fac2c7e4a979f137156a2a8026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talker: {fileID: 0}
   spikeDoorAnimator: {fileID: 0}
+--- !u!65 &896017981008588817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462231179739250315}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07036543, y: 0.07000286, z: 0.022894116}
+  m_Center: {x: 0.02682127, y: 0.044476736, z: -0.0013770392}

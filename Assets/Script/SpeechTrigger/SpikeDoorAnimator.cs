@@ -6,6 +6,7 @@ public class SpikeDoor : MonoBehaviour
 {
     public TOMTalk talker;
     public Animator spikeDoorAnimator;
+    public float pushForce = 5f;
 
      void Start()
     {
@@ -18,6 +19,14 @@ public class SpikeDoor : MonoBehaviour
             Debug.Log("Trigger Spike");
              talker.Talk("Be careful");
             spikeDoorAnimator.SetTrigger("SpikeOpen");
+
+            Rigidbody playerRb = other.GetComponent<Rigidbody>();
+            if (playerRb != null)
+            {
+                Vector3 pushDirection = (other.transform.position - transform.position).normalized;
+                pushDirection.y = 0f; 
+                playerRb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+            }
         }
     }
 }
