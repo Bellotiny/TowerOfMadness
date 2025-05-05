@@ -12,6 +12,7 @@ TagManager:
   - GroundWarning
   - WallWarning
   - DoorKey
+  - Food
   layers:
   - Default
   - TransparentFX

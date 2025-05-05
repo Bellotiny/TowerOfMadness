@@ -4,9 +4,9 @@ using UnityEngine;
 //using TMPro;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager_old : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager_old Instance;
     public GameObject pauseMenuPanel;
     private bool isPaused = false;
     //public TextMeshProUGUI currentScoreText;
