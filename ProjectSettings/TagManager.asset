@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Enemy
   - Sword
+  - Snail
+  - SpikeTrigger
+  - Trap
+  - GroundWarning
+  - WallWarning
+  - DoorKey
+  - Food
   layers:
   - Default
   - TransparentFX

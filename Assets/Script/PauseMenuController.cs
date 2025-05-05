@@ -4,60 +4,54 @@ using UnityEngine;
 
 public class PauseMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuPanel;
-    public static bool isPaused = false;
-    
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject pauseMenuPanel; 
+    private bool isPaused = false;
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(isPaused){
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
                 ResumeGame();
             }
-            else{
+            else
+            {
                 PauseGame();
             }
+
         }
     }
 
-    public void PauseGame(){
-        //Show Pause Menu UI
+    public void PauseGame()
+    {
+        if (pauseMenuPanel == null) return;
+        
         pauseMenuPanel.SetActive(true);
-        //Freeze game time
-        //Time.timeScale = 0f;
-        //(Optional) Freeze audio
-        //Audiolistener.pause = true;
+        Time.timeScale = 0f;
         isPaused = true;
     }
 
-    public void ResumeGame(){
-        //Show Pause Menu UI
+    public void ResumeGame()
+    {
+        if (pauseMenuPanel == null) return;
         pauseMenuPanel.SetActive(false);
-        //Unfreeze game time
-        Time.timeScale = 1f;
-        //(Optional) Unfreeze audio
-        //Audiolistener.pause = false;
+        Time.timeScale = 1.0f;
         isPaused = false;
     }
 
-    public void RestartLevel(){
-        if(GameManager.Instance != null){
-            GameManager.Instance.RestartLevel();
-        } else{
-            Debug.Log("Game Manager doesn't exist");
-        }
+    public void RestartGame()
+    {
+        Time.timeScale = 1.0f;
+        isPaused = false;
+        //ScoreManager.Instance.SubtractScore();
+        //TrapManager.Instance.RestoreLives();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void QuitGame(){
-        // If you're in the editor, this won't fully work,
-        // but in a built application, this will quit the game.
+    public void QuitGame()
+    {
         Application.Quit();
-        // If you have a Main Menu scene, you might do:
-        // SceneManager.LoadScene("MainMenu");
     }
+
 }

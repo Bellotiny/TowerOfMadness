@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 6726119614431527456}
   - component: {fileID: 5914969882741157824}
   - component: {fileID: 2238276474927746779}
+  - component: {fileID: 4260788670137483917}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -274,6 +275,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackColliders:
   - {fileID: 1184933832582710776}
+--- !u!114 &4260788670137483917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604525659245617281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b509c2d7fedb046259146dfcec5a9acd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talker: {fileID: 4525768183838005917, guid: 8bc84e17886c04d5d9a078e2aecd6174, type: 3}
 --- !u!1 &8240353817087193886
 GameObject:
   m_ObjectHideFlags: 0

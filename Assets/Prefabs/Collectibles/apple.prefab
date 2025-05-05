@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4675155876c687a4dbb5977fb476b8c4, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 5830974550931766810, guid: 4675155876c687a4dbb5977fb476b8c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -83,5 +87,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4675155876c687a4dbb5977fb476b8c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8183822422816892198}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4675155876c687a4dbb5977fb476b8c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2795991992200401191}
   m_SourcePrefab: {fileID: 100100000, guid: 4675155876c687a4dbb5977fb476b8c4, type: 3}
+--- !u!1 &222359982366690500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4675155876c687a4dbb5977fb476b8c4, type: 3}
+  m_PrefabInstance: {fileID: 1140698131654488469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8183822422816892198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222359982366690500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d87a2f946c204ae6afdf030bae594c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.2
+  speed: 1
+--- !u!65 &2795991992200401191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222359982366690500}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5747871, y: 3.8030422, z: 2.8097012}
+  m_Center: {x: -0.10407448, y: 1.4015406, z: -0.057970878}

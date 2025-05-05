@@ -44,4 +44,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other){
+        if(other.CompareTag("DoorKey"))
+        {
+            //Debug.Log("OPen dooooor");
+        }
+    }
+
 }
