@@ -22,6 +22,7 @@ public class TrapCollection : MonoBehaviour
                 pushDirection.y = 0f; // stay horizontal
                 playerRb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
         }
+       
     }
 }
 }

@@ -8,7 +8,7 @@ public class TrapManager : MonoBehaviour
     public static TrapManager Instance;
     public event Action<int> LiveChanged;
     public event Action OnGameOver;
-    private int lives = 3;
+    private int lives ;
 
     private void Awake()
     {
@@ -16,6 +16,7 @@ public class TrapManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            lives = 3;
             Debug.Log("TrapManager initialized successfully");
         }
         else

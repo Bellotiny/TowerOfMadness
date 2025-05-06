@@ -38,10 +38,10 @@ public class GameManager : MonoBehaviour
         {
             FindPlayer();
             ScoreManager.Instance.OnFoodScoreChanged += UpdateFoodScoreUI;
-            //TrapManager.Instance.LiveChanged += UpdateLivesUI;
-            //TrapManager.Instance.OnGameOver += HandleGameOver;
+            TrapManager.Instance.LiveChanged += UpdateLivesCountUI;
+            TrapManager.Instance.OnGameOver += HandleGameOver;
             UpdateFoodScoreUI(ScoreManager.Instance.GetScore());
-            //UpdateLivesUI(TrapManager.Instance.GetLives());
+            UpdateLivesCountUI(TrapManager.Instance.GetLives());
         }
     }
 
@@ -86,6 +86,11 @@ public class GameManager : MonoBehaviour
      private void UpdateFoodScoreUI(int newScore)
     {
         foodText.text = "Food: " + newScore;
+    }
+
+    private void UpdateLivesCountUI(int lives)
+    {
+        livesText.text = "" + lives;
     }
 
     public void ResetAllUI()
