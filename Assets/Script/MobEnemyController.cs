@@ -48,7 +48,12 @@ public class MobEnemyController : EnemyController
             return;
         }
     }
-    
+    public void GotHit()
+    {
+        hitParticles.Play();
+        health.TakeDamage(35);
+        //audioSource.Play();
+    }
 
    
 }

@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
     public void GotHit()
     {
         hitParticles.Play();
-        health.TakeDamage(35);
+        health.TakeDamage(20);
         //audioSource.Play();
     }
 }
