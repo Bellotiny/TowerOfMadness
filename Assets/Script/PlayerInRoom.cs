@@ -4,25 +4,36 @@ using UnityEngine;
 
 public class PlayerInRoom : MonoBehaviour
 {
-    public TrapAltar trapAltar;
+    private TrapAltar[] trapAltars;
 
-    void Start(){
-        //trapAltar = GetComponent<TrapAltar>();
+    void Start()
+    {
+        trapAltars = GetComponentsInChildren<TrapAltar>();
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player entered the room trigger zone.");
-            trapAltar.NotifyPlayerEnteredRoom();
+
+            foreach (var altar in trapAltars)
+            {
+                altar.NotifyPlayerEnteredRoom();
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player left the room trigger zone.");
-            //trapAltar.NotifyPlayerExitedRoom();
+
+            foreach (var altar in trapAltars)
+            {
+                altar.NotifyPlayerExitedRoom();
+            }
         }
     }
 }

@@ -11,7 +11,12 @@ public class TrapAltar : MonoBehaviour
     public bool playerInRoom = false;
     private GameObject currentEnergyBall;
     private bool isDestroyed = false;
+    private ParticleSystem destructionEffect;
     private bool spawnScheduled = false;
+    void Start()
+    {
+        destructionEffect = GetComponent<ParticleSystem>();
+    }
     void OnCollisionEnter(Collider other){
         if (isDestroyed) return;
 
@@ -43,6 +48,11 @@ public class TrapAltar : MonoBehaviour
             //Invoke(nameof(SpawnEnergyBall), respawnDelay);
         }
     }
+    public void NotifyPlayerExitedRoom()
+    {
+        Debug.Log("Player left the room.");
+        playerInRoom = false;
+    }
     void Update()
     {
         if (!isDestroyed && playerInRoom && currentEnergyBall == null)
@@ -60,7 +70,10 @@ public class TrapAltar : MonoBehaviour
     void DestroyAltar()
     {
         isDestroyed = true;
-        //Add effects like particles or sound
+        if (destructionEffect != null)
+        {
+            destructionEffect.Play();
+        }
         Destroy(gameObject);
     }
 }
