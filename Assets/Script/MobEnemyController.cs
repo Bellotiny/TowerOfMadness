@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class MobEnemyController : EnemyController
 {
     public Animator animator;
     private EnemyMovement movement;
@@ -17,8 +17,7 @@ public class EnemyController : MonoBehaviour
     public float AttackRange = 2f;
     public LayerMask PlayerLayer;
     public StateType currentState;
-    public bool canAttack = false;
-    public MobEnemyController[] mobEnemies;
+
     //private AudioSource audioSource;
     void Start()
     {
@@ -44,39 +43,12 @@ public class EnemyController : MonoBehaviour
          // send agent speed to animator for walking anim purpose
          animator.SetFloat("speed", Agent.velocity.magnitude);
          // Making you chase
-
-            var foundMobs = FindObjectsOfType<MobEnemyController>();
-           
-            Debug.Log(foundMobs + " : " + foundMobs.Length);
-
-        if (CanSeePlayer() && canAttack && (currentState != StateType.Chase || currentState != StateType.Attack)){
+        if (CanSeePlayer() && (currentState != StateType.Chase || currentState != StateType.Attack)){
             StateMachine.TransitionToState(StateType.Chase);
             return;
         }
     }
-    public bool CanSeePlayer(){
-        float distanceToPlayer = Vector3.Distance(transform.position,
-        Player.position);
-
-        if (distanceToPlayer <= SightRange)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public bool IsPlayerInAttackRange()
-    {
-        float distanceToPlayer = Vector3.Distance(transform.position,
-        Player.position);
-        return distanceToPlayer <= AttackRange;
-    }
     
-  
-    public void GotHit()
-    {
-        hitParticles.Play();
-        health.TakeDamage(35);
-        //audioSource.Play();
-    }
+
+   
 }

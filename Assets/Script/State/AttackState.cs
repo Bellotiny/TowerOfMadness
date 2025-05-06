@@ -12,7 +12,7 @@ public class AttackState : IState
     }
 
     public void Enter(){
-        enemyController.animator.SetBool("isAttacking", true);
+        enemyController.animator.SetTrigger("DoAttack");
         enemyController.Agent.isStopped = true;
     }
 
@@ -29,7 +29,7 @@ public class AttackState : IState
     }
     public void Exit()
     {
-        enemyController.animator.SetBool("isAttacking", true);
+
         enemyController.Agent.isStopped = false; // Resume the AI agent movement
     }
 }

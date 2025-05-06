@@ -25,5 +25,13 @@ public class HitDetector : MonoBehaviour
                 enemyController.GotHit();
             }
         }
+         if (other.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth =  other.GetComponent<PlayerHealth>();
+            if (playerHealth  != null)
+            {
+                playerHealth.TakeDamage(15);
+            }
+        }
     }
 }
