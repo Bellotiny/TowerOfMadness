@@ -15,6 +15,7 @@ public class SpeechTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("" + other.gameObject);
         if (other.CompareTag(targetTag))
         {
             Debug.Log("Triggered by: " + other.name);
