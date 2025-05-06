@@ -13,6 +13,7 @@ TagManager:
   - WallWarning
   - DoorKey
   - Food
+  - DeathTrigger
   layers:
   - Default
   - TransparentFX
