@@ -13377,6 +13377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2238276474927746779, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
+      propertyPath: fallThresholdY
+      value: -12
+      objectReference: {fileID: 0}
     - target: {fileID: 2701024959425121012, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.003
@@ -34968,7 +34972,7 @@ PrefabInstance:
       objectReference: {fileID: 2027154361}
     - target: {fileID: 4269153978186612930, guid: 3d0ade19ce8fe44d1944ed1444bcb83c, type: 3}
       propertyPath: m_Duration
-      value: 16.006464
+      value: 16.36532
       objectReference: {fileID: 0}
     - target: {fileID: 4269153978186612930, guid: 3d0ade19ce8fe44d1944ed1444bcb83c, type: 3}
       propertyPath: m_EasingMode

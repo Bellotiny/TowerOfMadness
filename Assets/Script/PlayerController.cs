@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private CharacterMovement movement;
     private Rigidbody rb;
+    [SerializeField] private float fallThresholdY = -10f;
+    private PlayerHealth health;
     public Collider[] attackColliders;
     void Start()
     {
         animator = GetComponent<Animator>();
         movement = GetComponent<CharacterMovement>();
         rb = GetComponent<Rigidbody>();
+        health = GetComponent<PlayerHealth>();
         foreach( Collider attackCollider in attackColliders)
         {
             attackCollider.enabled = false; // Disable collider at start
@@ -27,6 +30,14 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonUp("Fire1")){
             //animator.SetTrigger("doRoll");
+        }
+
+        if(transform.position.y < fallThresholdY){
+            if (health != null)
+            {
+                Debug.Log("Player has fallen!!!!");
+                health.Die();
+            }
         }
     }
     public void EnableHitbox()

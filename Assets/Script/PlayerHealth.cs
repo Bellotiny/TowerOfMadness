@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     public void Die(){
         animator.SetTrigger("Die");
         if(GameManager.Instance != null){
-            GameManager_old.Instance.RestartLevel();
+            GameManager.Instance.HandleCurrentLevelFailure();
         }
     }
 
