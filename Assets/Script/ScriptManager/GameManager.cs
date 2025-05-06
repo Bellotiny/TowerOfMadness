@@ -57,18 +57,18 @@ public class GameManager : MonoBehaviour
 
      public void HandleCurrentLevelFailure()
     {
-        // TrapManager.Instance.MinusLive();
-        // if (TrapManager.Instance.GetLives() <= 0)
-        // {
-        //     HandleGameOver();
-        // }
-        // else
-        // {
-        //     ScoreManager.Instance.SubtractScore();
-        //     //ResetJumpBoost();
-        //     //ResetSpeedBoost();
-        //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        // }
+        TrapManager.Instance.MinusLive();
+        if (TrapManager.Instance.GetLives() <= 0)
+        {
+            HandleGameOver();
+        }
+        else
+        {
+            ScoreManager.Instance.SubtractScore();
+            //ResetJumpBoost();
+            //ResetSpeedBoost();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
      private void HandleGameOver()
