@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ResetLifeSpan();
+            }
             ScoreManager.Instance.SubtractScore();
             //ResetJumpBoost();
             //ResetSpeedBoost();
