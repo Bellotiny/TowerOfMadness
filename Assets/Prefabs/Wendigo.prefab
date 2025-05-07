@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7962393428038520079}
   m_Layer: 0
   m_Name: Wendigo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,23 +55,14 @@ MonoBehaviour:
   animator: {fileID: 8295292636561063736}
   Waypoints: []
   Player: {fileID: 4598406025575241257, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
-  SightRange: 10
-  AttackRange: 2
+  SightRange: 500
+  AttackRange: 5
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   currentState: 0
   canAttack: 0
   mobEnemies: []
-  animator: {fileID: 0}
-  Waypoints: []
-  Player: {fileID: 0}
-  SightRange: 10
-  AttackRange: 2
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  currentState: 0
 --- !u!95 &1666108830196445118
 Animator:
   serializedVersion: 5

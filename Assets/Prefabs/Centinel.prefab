@@ -189,12 +189,14 @@ MonoBehaviour:
   animator: {fileID: 0}
   Waypoints: []
   Player: {fileID: 0}
-  SightRange: 10
+  SightRange: 400
   AttackRange: 5
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 0
   currentState: 0
+  canAttack: 0
+  mobEnemies: []
 --- !u!114 &2177614113658025205
 MonoBehaviour:
   m_ObjectHideFlags: 0

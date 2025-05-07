@@ -12,6 +12,7 @@ public class AttackState : IState
     }
 
     public void Enter(){
+        Debug.Log("Attacking Player...");
         enemyController.animator.SetTrigger("DoAttack");
         enemyController.Agent.isStopped = true;
     }
