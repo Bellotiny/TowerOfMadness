@@ -19657,6 +19657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthBar: {fileID: 1170726269}
 --- !u!1 &1040097418
 GameObject:
   m_ObjectHideFlags: 0
@@ -21397,7 +21398,7 @@ GameObject:
   - component: {fileID: 1170726268}
   - component: {fileID: 1170726269}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
