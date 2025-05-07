@@ -11,7 +11,6 @@ public class ChaseState : IState
 
     public void Enter()
     {
-        enemyController.animator.SetBool("isChasing", true);
     }
 
     public void Execute()
@@ -21,6 +20,8 @@ public class ChaseState : IState
         //     enemyController.StateMachine.TransitionToState(StateType.Patrol);
         //     return;
         // }
+        if (enemyController.isHit) return;
+
         if (enemyController.IsPlayerInAttackRange())
         {
             enemyController.StateMachine.TransitionToState(StateType.Attack);

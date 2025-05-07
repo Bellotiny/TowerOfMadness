@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTime: 2
-  shootForce: 11
+  shootForce: 15
   redMaterial: {fileID: 2100000, guid: 89e75ff0b47229d459a9db0cdda120b5, type: 2}
 --- !u!198 &-8314645911090809013
 ParticleSystem:

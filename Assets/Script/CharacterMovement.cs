@@ -17,6 +17,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float baseWalkSpeed = 5f;    // Base speed when walking
     [SerializeField] private float baseRunSpeed = 8f;     // Base speed when running
     [SerializeField] private float rotationSpeed = 10f;   // Speed at which the character rotates
+    [SerializeField] private float dashForce = 20f;
+    [SerializeField] private float dashCooldown = 1f;
+    private float lastDashTime = -10f;
+    private bool isDashing = false;
+    [SerializeField] private float dashDuration = 0.2f;
 
     // ============================== Jump Settings =================================
     [Header("Jump Settings")]
@@ -148,12 +153,18 @@ public class CharacterMovement : MonoBehaviour
             IsRunning = !IsRunning;
         }
 
-        if(Input.GetKeyDown(KeyCode.E)){
+        if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){
             ToggleSword();
         }
 
         if(Input.GetKeyDown(KeyCode.Q)){
+            Dash();
+        }
+        if(Input.GetKeyDown(KeyCode.E)){
             SlashAttack();
+        }
+        if(Input.GetKeyDown(KeyCode.R)){
+            ComboAttack();
         }
     }
 
@@ -265,6 +276,7 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void MoveCharacter()
     {
+        if (isDashing) return;
         // Determine movement speed (walking or running)
         float speed = IsRunning ? baseRunSpeed : baseWalkSpeed;
         
@@ -283,7 +295,6 @@ public class CharacterMovement : MonoBehaviour
         //rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime); // valid for kinematic
 
     }
-
     private void ToggleSword(){
         isSwordEquipped = !isSwordEquipped;
         
@@ -294,10 +305,12 @@ public class CharacterMovement : MonoBehaviour
                 holsteredSword.SetActive(false);
                 sword.SetActive(true);
                 animator.SetTrigger("EquipSword");
+                animator.SetBool("IsSwordEquipped",true);
             }
             else{
                 if(animator != null){
                     animator.SetTrigger("SheathSword");
+                    animator.SetBool("IsSwordEquipped",false);
                 }
                 
                 sword.SetActive(false);
@@ -306,13 +319,39 @@ public class CharacterMovement : MonoBehaviour
             
         }
     }
-
     private void SlashAttack(){
         if(animator != null){
             if(isSwordEquipped){
-                animator.SetTrigger("doAttack");
+                animator.SetTrigger("DoAttack");
             }
             
         }
     }
+    private void ComboAttack(){
+        if(animator != null){
+            if(isSwordEquipped){
+                animator.SetTrigger("DoAttack2");
+            }
+            
+        }
+    }
+    private void Dash(){
+        if (Time.time - lastDashTime < dashCooldown || moveDirection == Vector3.zero || isDashing)
+        return;
+
+        StartCoroutine(PerformDash());
+    }
+    private IEnumerator PerformDash()
+    {
+        isDashing = true;
+        lastDashTime = Time.time;
+
+        Vector3 dashDir = moveDirection.normalized;
+        rb.velocity = dashDir * dashForce;
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+    }
+
 }

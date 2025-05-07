@@ -9,15 +9,15 @@ public class TrapAltar : MonoBehaviour
     public float respawnDelay = 1f;
     [SerializeField] private float spawnHeightInInches = 2.5f;
     public bool playerInRoom = false;
+    public GameObject destructionEffectPrefab;
     private GameObject currentEnergyBall;
     private bool isDestroyed = false;
-    private ParticleSystem destructionEffect;
     private bool spawnScheduled = false;
     void Start()
     {
-        destructionEffect = GetComponent<ParticleSystem>();
+        // destructionEffect = GetComponent<ParticleSystem>();
     }
-    void OnCollisionEnter(Collider other){
+    void OnTriggerEnter(Collider other){
         if (isDestroyed) return;
 
         if (other.CompareTag("Sword"))
@@ -70,9 +70,9 @@ public class TrapAltar : MonoBehaviour
     void DestroyAltar()
     {
         isDestroyed = true;
-        if (destructionEffect != null)
+        if (destructionEffectPrefab != null)
         {
-            destructionEffect.Play();
+            Instantiate(destructionEffectPrefab, transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
     }

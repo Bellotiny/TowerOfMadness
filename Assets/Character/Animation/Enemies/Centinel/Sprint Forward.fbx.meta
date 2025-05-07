@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 065a26f85f6ae024cb0ecc7ed26414bd
+guid: 2abd049d49eb2a84a8244283d7584e5b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,10 +19,12 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
-      : position error = 3.770610 mm\n\t'mixamorig:LeftLeg' : position error = 4.812126
-      mm\n\t'mixamorig:LeftFoot' : position error = 7.845398 mm\n\t'mixamorig:RightUpLeg'
-      : position error = 4.794298 mm\n\t'mixamorig:RightLeg' : position error = 5.025229
-      mm\n\t'mixamorig:RightFoot' : position error = 8.413081 mm\n"
+      : position error = 130.324432 mm\n\t'mixamorig:LeftLeg' : position error =
+      325.182068 mm\n\t'mixamorig:LeftFoot' : position error = 338.115448 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 158.008011 mm\n\t'mixamorig:RightUpLeg' : position error
+      = 130.253204 mm\n\t'mixamorig:RightLeg' : position error = 324.902527 mm\n\t'mixamorig:RightFoot'
+      : position error = 338.646698 mm\n\t'mixamorig:RightToeBase' : position error
+      = 157.956894 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -38,21 +40,21 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mutant Punch
+      name: Sprint Forward
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 33
+      lastFrame: 17
       wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 2
+      orientationOffsetY: -40
+      level: -0.5
+      cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
