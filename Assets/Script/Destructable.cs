@@ -8,10 +8,12 @@ public class Destructable : MonoBehaviour
     //public GameObject optionalObject;  
   
    
-    void OnMouseDown(){
-        Instantiate(destroyVersion, transform.position,transform.rotation);
+    void OnTriggerEnter(Collider other){
+        if (other.CompareTag("Sword"))
+        {
+            Instantiate(destroyVersion, transform.position,transform.rotation);
        
-        Destroy(gameObject);
-
+            Destroy(gameObject);
+        }
     }
 }
