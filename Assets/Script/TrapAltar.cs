@@ -17,7 +17,7 @@ public class TrapAltar : MonoBehaviour
     {
         destructionEffect = GetComponent<ParticleSystem>();
     }
-    void OnCollisionEnter(Collider other){
+    void OnTriggerEnter(Collider other){
         if (isDestroyed) return;
 
         if (other.CompareTag("Sword"))

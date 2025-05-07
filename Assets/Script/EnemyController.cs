@@ -17,9 +17,10 @@ public class EnemyController : MonoBehaviour
     public float AttackRange = 2f;
     public LayerMask PlayerLayer;
     public StateType currentState;
-
+    public bool canAttack = false;
+    public MobEnemyController[] mobEnemies;
     //private AudioSource audioSource;
-    void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
         health = GetComponent<EnemyHealth>();
@@ -34,7 +35,7 @@ public class EnemyController : MonoBehaviour
         //audioSource = GetComponent<AudioSource>();
     }
     
-    void Update()
+    protected virtual void Update()
     {  
         // tells your in what state
          currentState = StateMachine.GetCurrentStateType();
@@ -43,7 +44,16 @@ public class EnemyController : MonoBehaviour
          // send agent speed to animator for walking anim purpose
          animator.SetFloat("speed", Agent.velocity.magnitude);
          // Making you chase
-        if (CanSeePlayer() && (currentState != StateType.Chase || currentState != StateType.Attack)){
+
+        var foundMobs = FindObjectsOfType<MobEnemyController>();
+        if(foundMobs.Length == 0){
+            canAttack = true;
+        }
+           
+            //Debug.Log(foundMobs + " : " + foundMobs.Length);
+
+        if (CanSeePlayer() && canAttack && (currentState != StateType.Chase || currentState != StateType.Attack)){
+            Debug.Log("Chasing Player...");
             StateMachine.TransitionToState(StateType.Chase);
             return;
         }
@@ -65,10 +75,12 @@ public class EnemyController : MonoBehaviour
         Player.position);
         return distanceToPlayer <= AttackRange;
     }
-    public void GotHit()
+    
+  
+    public virtual void GotHit()
     {
         hitParticles.Play();
-        health.TakeDamage(35);
+        health.TakeDamage(20);
         //audioSource.Play();
     }
 }

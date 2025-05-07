@@ -148,7 +148,7 @@ public class CharacterMovement : MonoBehaviour
             IsRunning = !IsRunning;
         }
 
-        if(Input.GetKeyDown(KeyCode.E)){
+        if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){
             ToggleSword();
         }
 

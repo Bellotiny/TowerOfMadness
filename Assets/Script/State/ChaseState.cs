@@ -11,7 +11,6 @@ public class ChaseState : IState
 
     public void Enter()
     {
-        enemyController.animator.SetBool("isChasing", true);
     }
 
     public void Execute()
