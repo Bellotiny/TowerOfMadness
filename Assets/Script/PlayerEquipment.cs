@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class InventoryItemsBehaivour : MonoBehaviour
+public class PlayerEquipment : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private Inventory inventory;
     void Start()
     {
-        
+        inventory.InitInventory();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
