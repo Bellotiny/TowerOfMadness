@@ -58,12 +58,18 @@ public class GameManager : MonoBehaviour
      public void HandleCurrentLevelFailure()
     {
         TrapManager.Instance.MinusLive();
+        Debug.Log( TrapManager.Instance.GetLives() <= 0);
         if (TrapManager.Instance.GetLives() <= 0)
         {
             HandleGameOver();
         }
         else
         {
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ResetLifeSpan();
+            }
             ScoreManager.Instance.SubtractScore();
             //ResetJumpBoost();
             //ResetSpeedBoost();

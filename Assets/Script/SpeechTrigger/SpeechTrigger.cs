@@ -19,7 +19,7 @@ public class SpeechTrigger : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             Debug.Log("Triggered by: " + other.name);
-            Debug.Log(message);
+            //Debug.Log(message);
 
             if (talker != null && !string.IsNullOrEmpty(message))
                 talker.Talk(message);

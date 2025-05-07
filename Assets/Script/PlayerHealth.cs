@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         animator.SetTrigger("GotHit");
+        Debug.Log("Current health: " + currentHealth);
         //UpdateHealthText();
     }
 
@@ -36,6 +37,11 @@ public class PlayerHealth : MonoBehaviour
         if(GameManager.Instance != null){
             GameManager.Instance.HandleCurrentLevelFailure();
         }
+    }
+
+    public void ResetLifeSpan(){
+        currentHealth = maxHealth;
+
     }
 
     // public void Heal(int amount)
