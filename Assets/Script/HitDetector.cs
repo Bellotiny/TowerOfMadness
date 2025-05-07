@@ -24,6 +24,7 @@ public class HitDetector : MonoBehaviour
             if (enemyController  != null)
             {
                 enemyController.GotHit();
+                enemyHealth.TakeDamage(25);
             }
         }
          if (other.CompareTag("Player"))
@@ -31,7 +32,7 @@ public class HitDetector : MonoBehaviour
             PlayerHealth playerHealth =  other.GetComponent<PlayerHealth>();
             if (playerHealth  != null)
             {
-                playerHealth.TakeDamage(15);
+                playerHealth.TakeDamage(10);
             }
         }
     }

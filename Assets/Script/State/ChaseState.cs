@@ -20,6 +20,8 @@ public class ChaseState : IState
         //     enemyController.StateMachine.TransitionToState(StateType.Patrol);
         //     return;
         // }
+        if (enemyController.isHit) return;
+
         if (enemyController.IsPlayerInAttackRange())
         {
             enemyController.StateMachine.TransitionToState(StateType.Attack);

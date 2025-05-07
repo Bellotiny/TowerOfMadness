@@ -127,6 +127,7 @@ MonoBehaviour:
   respawnDelay: 1
   spawnHeightInInches: 30
   playerInRoom: 0
+  destructionEffectPrefab: {fileID: 4206488928867180871, guid: b8c795f0011e39f44b7fcc744e914cb9, type: 3}
 --- !u!198 &-3469957955300839360
 ParticleSystem:
   m_ObjectHideFlags: 0
