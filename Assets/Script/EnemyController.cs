@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     public LayerMask PlayerLayer;
     public StateType currentState;
     public bool canAttack = false;
+    public bool isHit = false;
     public MobEnemyController[] mobEnemies;
     //private AudioSource audioSource;
     protected virtual void Start()
@@ -79,8 +80,22 @@ public class EnemyController : MonoBehaviour
   
     public virtual void GotHit()
     {
-        hitParticles.Play();
-        health.TakeDamage(20);
-        //audioSource.Play();
+        if (isHit) return;
+
+        StartCoroutine(HandleHit());
     }
+    private IEnumerator HandleHit()
+    {
+        isHit = true;
+        hitParticles.Play();
+        animator.SetTrigger("GotHit");
+        health.TakeDamage(20);
+        Agent.isStopped = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Agent.isStopped = false;
+        isHit = false;
+    }
+
 }

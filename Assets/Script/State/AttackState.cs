@@ -5,6 +5,8 @@ public class AttackState : IState
 {
     private EnemyController enemyController;
     public StateType Type => StateType.Attack;
+    private float attackCooldown = 1.5f;
+    private float lastAttackTime = -Mathf.Infinity;
 
     public AttackState(EnemyController enemyController)
     {
@@ -13,19 +15,29 @@ public class AttackState : IState
 
     public void Enter(){
         Debug.Log("Attacking Player...");
-        enemyController.animator.SetTrigger("DoAttack");
+        // enemyController.animator.SetTrigger("DoAttack");
+        if (Time.time - lastAttackTime >= attackCooldown)
+        {
+            Debug.Log("Does Attack...");
+            enemyController.animator.SetTrigger("DoAttack");
+            lastAttackTime = Time.time;
+        }
         enemyController.Agent.isStopped = true;
     }
 
     public void Execute()
     {
-        // Check if the player is within attack range
-        if (Vector3.Distance(enemyController.transform.position,
-            enemyController.Player.position) > enemyController.AttackRange)
+        if (enemyController.isHit) return;
+
+        // if (Time.time - lastAttackTime >= attackCooldown)
+        // {
+        //     enemyController.animator.SetTrigger("DoAttack");
+        //     lastAttackTime = Time.time;
+        // }
+
+        if (!enemyController.IsPlayerInAttackRange())
         {
-            // If the player moves away, transition back to ChaseState
             enemyController.StateMachine.TransitionToState(StateType.Chase);
-            return;
         }
     }
     public void Exit()
