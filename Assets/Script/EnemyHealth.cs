@@ -32,6 +32,10 @@ public class EnemyHealth : MonoBehaviour
     }
     public void OnDeathAnimationEnd()
     {
+        if (TryGetComponent<MobEnemyController>(out var mob))
+        {
+            MobEnemyController.activeMobs.Remove(mob);
+        }
         gameObject.SetActive(false);
     }
 

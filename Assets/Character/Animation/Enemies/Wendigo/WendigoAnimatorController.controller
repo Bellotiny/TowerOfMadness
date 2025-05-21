@@ -644,8 +644,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wendigo Idle
-  m_Speed: 1
+  m_Name: Idle
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6752359034309075106}
@@ -673,8 +673,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wendigo Idle
-  m_Speed: 1
+  m_Name: Idle
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5955035359697679765}

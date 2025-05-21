@@ -1,7 +1,9 @@
+using UnityEngine;
+
 public class ChaseState : IState
 {
     private EnemyController enemyController;
-    
+
     public StateType Type => StateType.Chase;
 
     public ChaseState(EnemyController enemyController)
@@ -11,6 +13,8 @@ public class ChaseState : IState
 
     public void Enter()
     {
+        Debug.Log($"{enemyController.name} entered ChaseState.");
+        enemyController.Agent.isStopped = false;
     }
 
     public void Execute()
@@ -27,12 +31,23 @@ public class ChaseState : IState
             enemyController.StateMachine.TransitionToState(StateType.Attack);
             return;
         }
+        if (!enemyController.Agent.isOnNavMesh)
+        {
+            Debug.LogWarning($"{enemyController.name}'s NavMeshAgent is NOT on a NavMesh!");
+            return;
+        }
+
+        if (!enemyController.Agent.enabled)
+        {
+            Debug.LogWarning($"{enemyController.name}'s NavMeshAgent is DISABLED!");
+            return;
+        }
         enemyController.Agent.destination = enemyController.Player.position;
     }
 
     public void Exit()
     {
-    // No cleanup
+        Debug.Log($"{enemyController.name} exiting ChaseState.");
     }
 
 }
