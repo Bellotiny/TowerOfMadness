@@ -1,45 +1,68 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformShaker : MonoBehaviour
 {
+    public GameObject targetObject;
     public float shakeDuration = 0.5f;
     public float shakeAmount = 0.1f;
+    public float fallDistance = 2f;
+    public float fallDuration = 0.5f;
     public float disappearDelay = 0.5f;
 
     private Vector3 originalPosition;
     private bool isActivated = false;
 
+    public Action OnShakingComplete;
+
     void Start()
     {
-        originalPosition = transform.localPosition;
+        if (targetObject != null)
+        {
+            originalPosition = targetObject.transform.localPosition;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TriggerShake()
     {
-        if (!isActivated && other.CompareTag("Player"))
+        if (!isActivated)
         {
             isActivated = true;
             StartCoroutine(ShakeAndDisappear());
         }
     }
 
-    IEnumerator ShakeAndDisappear()
+    private IEnumerator ShakeAndDisappear()
     {
         float elapsed = 0f;
 
         while (elapsed < shakeDuration)
         {
-            Vector3 randomOffset = Random.insideUnitSphere * shakeAmount;
-            transform.localPosition = originalPosition + new Vector3(randomOffset.x, randomOffset.y, 0f);
+            Vector3 offset = UnityEngine.Random.insideUnitSphere * shakeAmount;
+            targetObject.transform.localPosition = originalPosition + new Vector3(offset.x, offset.y, 0f);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        transform.localPosition = originalPosition;
-        yield return new WaitForSeconds(disappearDelay);
+        targetObject.transform.localPosition = originalPosition;
 
-        gameObject.SetActive(false); // Or use Destroy(gameObject);
+        elapsed = 0f;
+        Vector3 startFall = originalPosition;
+        Vector3 endFall = originalPosition + new Vector3(0, -fallDistance, 0);
+
+        while (elapsed < fallDuration)
+        {
+            targetObject.transform.localPosition = Vector3.Lerp(startFall, endFall, elapsed / fallDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        targetObject.transform.localPosition = endFall;
+
+        yield return new WaitForSeconds(disappearDelay);
+        targetObject.SetActive(false);
+
+        OnShakingComplete?.Invoke();
     }
 }
