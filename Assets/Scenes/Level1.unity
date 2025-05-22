@@ -24816,7 +24816,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1223542820}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -24825,7 +24825,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -29758,7 +29758,7 @@ MonoBehaviour:
   canAttack: 0
   isHit: 0
   mobEnemies: []
-  isMob: 0
+  isMob: 1
 --- !u!95 &1223542828
 Animator:
   serializedVersion: 5
@@ -32445,7 +32445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1349718703
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37080,6 +37080,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1223542829}
     m_Modifications:
+    - target: {fileID: 241903983629497022, guid: f00f964a3c44f42fb94764ee04877ffd, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 241903983629497022, guid: f00f964a3c44f42fb94764ee04877ffd, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

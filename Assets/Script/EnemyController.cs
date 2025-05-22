@@ -52,19 +52,12 @@ public class EnemyController : MonoBehaviour
         canAttack = true;
         currentState = StateMachine.GetCurrentStateType();
         StateMachine.Update();
-        animator.SetFloat("speed", Agent.velocity.magnitude);
+        float speed = Agent.velocity.magnitude;
+        animator.SetFloat("Speed", speed);
 
         // var foundMobs = FindObjectsOfType<MobEnemyController>();
         // if(foundMobs.Length == 0){
         //     canAttack = true;
-        // }
-
-        //Debug.Log(foundMobs + " : " + foundMobs.Length);
-
-        // if (CanSeePlayer() && canAttack && (currentState != StateType.Chase || currentState != StateType.Attack)){
-        //     Debug.Log("Chasing Player...");
-        //     StateMachine.TransitionToState(StateType.Chase);
-        //     return;
         // }
         if (CanSeePlayer() && canAttack && currentState != StateType.Chase && currentState != StateType.Attack)
         {

@@ -32,11 +32,13 @@ public class AttackState : IState
         if (!enemyController.IsPlayerInAttackRange())
         {
             enemyController.StateMachine.TransitionToState(StateType.Chase);
+            return;
         }
 
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             Debug.Log("Does Attack...");
+            //enemyController.animator.ResetTrigger("DoAttack");
             enemyController.animator.SetTrigger("DoAttack");
             lastAttackTime = Time.time;
         }

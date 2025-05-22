@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueManager dialogueManager;
-    public List<DialogueLine> dialogueToStart;
+    public string dialogueFileName;
+
     private void OnTriggerEnter(Collider other)
     {
-        dialogueManager.StartDialogue(dialogueToStart);
-        gameObject.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
+            if (dialogueManager != null)
+            {
+                dialogueManager.LoadDialogueFromFile(dialogueFileName);
+                gameObject.SetActive(false);
+            }
+        }
     }
 }
