@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
     public bool canAttack = false;
     public bool isHit = false;
     public MobEnemyController[] mobEnemies;
+    public int damageTaken { get; protected set; } = 20;
+    public bool isMob = false;
     //private AudioSource audioSource;
     protected virtual void Start()
     {
@@ -35,25 +37,37 @@ public class EnemyController : MonoBehaviour
         StateMachine.TransitionToState(StateType.Idle);
         //audioSource = GetComponent<AudioSource>();
     }
-    
+
     protected virtual void Update()
-    {  
-        // tells your in what state
-         currentState = StateMachine.GetCurrentStateType();
-         // makes the state machine work every frame
-         StateMachine.Update();
-         // send agent speed to animator for walking anim purpose
-         animator.SetFloat("speed", Agent.velocity.magnitude);
-         // Making you chase
+    {
+        Debug.Log($"{gameObject.name} - CurrentState: {currentState}");
+        Debug.Log($"{gameObject.name} - CanSeePlayer: {CanSeePlayer()}");
+        Debug.Log($"{gameObject.name} - canAttack: {canAttack}");
 
-        var foundMobs = FindObjectsOfType<MobEnemyController>();
-        if(foundMobs.Length == 0){
-            canAttack = true;
+        if (!isMob && MobEnemyController.activeMobs.Count > 0)
+        {
+            animator.SetFloat("speed", 0f);
+            return;
         }
-           
-            //Debug.Log(foundMobs + " : " + foundMobs.Length);
+        canAttack = true;
+        currentState = StateMachine.GetCurrentStateType();
+        StateMachine.Update();
+        animator.SetFloat("speed", Agent.velocity.magnitude);
 
-        if (CanSeePlayer() && canAttack && (currentState != StateType.Chase || currentState != StateType.Attack)){
+        // var foundMobs = FindObjectsOfType<MobEnemyController>();
+        // if(foundMobs.Length == 0){
+        //     canAttack = true;
+        // }
+
+        //Debug.Log(foundMobs + " : " + foundMobs.Length);
+
+        // if (CanSeePlayer() && canAttack && (currentState != StateType.Chase || currentState != StateType.Attack)){
+        //     Debug.Log("Chasing Player...");
+        //     StateMachine.TransitionToState(StateType.Chase);
+        //     return;
+        // }
+        if (CanSeePlayer() && canAttack && currentState != StateType.Chase && currentState != StateType.Attack)
+        {
             Debug.Log("Chasing Player...");
             StateMachine.TransitionToState(StateType.Chase);
             return;
@@ -84,12 +98,12 @@ public class EnemyController : MonoBehaviour
 
         StartCoroutine(HandleHit());
     }
-    private IEnumerator HandleHit()
+    protected IEnumerator HandleHit()
     {
         isHit = true;
         hitParticles.Play();
         animator.SetTrigger("GotHit");
-        health.TakeDamage(20);
+        health.TakeDamage(damageTaken);
         Agent.isStopped = true;
 
         yield return new WaitForSeconds(0.5f);

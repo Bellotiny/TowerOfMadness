@@ -5,25 +5,31 @@ using UnityEngine.AI;
 
 public class MobEnemyController : EnemyController
 {
-    private EnemyHealth health;
+    public static List<MobEnemyController> activeMobs = new List<MobEnemyController>();
     private ParticleSystem hitParticles;
     //private AudioSource audioSource;
-    void Start()
+    protected override void Start()
     {
         base.Start();
-        health = GetComponent<EnemyHealth>();
-        hitParticles = GetComponent<ParticleSystem>();
+        isMob = true;
+        damageTaken = 35;
+        activeMobs.Add(this);
+        //health = GetComponent<EnemyHealth>();
+        //hitParticles = GetComponent<ParticleSystem>();
         //audioSource = GetComponent<AudioSource>();
     }
-    
+
     void Update()
-    {  
+    {
         base.Update();
+        if (StateMachine == null)
+        Debug.LogError("Mob's StateMachine is null!");
     }
     public override void GotHit()
     {
-        hitParticles.Play();
-        health.TakeDamage(35);
+        //hitParticles.Play();
+        if (isHit) return;
+        StartCoroutine(HandleHit());
         //audioSource.Play();
     }
 

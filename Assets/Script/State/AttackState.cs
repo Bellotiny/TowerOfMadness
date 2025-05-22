@@ -16,12 +16,12 @@ public class AttackState : IState
     public void Enter(){
         Debug.Log("Attacking Player...");
         // enemyController.animator.SetTrigger("DoAttack");
-        if (Time.time - lastAttackTime >= attackCooldown)
-        {
-            Debug.Log("Does Attack...");
-            enemyController.animator.SetTrigger("DoAttack");
-            lastAttackTime = Time.time;
-        }
+        // if (Time.time - lastAttackTime >= attackCooldown)
+        // {
+        //     Debug.Log("Does Attack...");
+        //     enemyController.animator.SetTrigger("DoAttack");
+        //     lastAttackTime = Time.time;
+        // }
         enemyController.Agent.isStopped = true;
     }
 
@@ -29,20 +29,21 @@ public class AttackState : IState
     {
         if (enemyController.isHit) return;
 
-        // if (Time.time - lastAttackTime >= attackCooldown)
-        // {
-        //     enemyController.animator.SetTrigger("DoAttack");
-        //     lastAttackTime = Time.time;
-        // }
-
         if (!enemyController.IsPlayerInAttackRange())
         {
             enemyController.StateMachine.TransitionToState(StateType.Chase);
+        }
+
+        if (Time.time - lastAttackTime >= attackCooldown)
+        {
+            Debug.Log("Does Attack...");
+            enemyController.animator.SetTrigger("DoAttack");
+            lastAttackTime = Time.time;
         }
     }
     public void Exit()
     {
 
-        enemyController.Agent.isStopped = false; // Resume the AI agent movement
+        enemyController.Agent.isStopped = false;
     }
 }
