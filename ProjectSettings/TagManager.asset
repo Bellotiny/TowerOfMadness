@@ -15,6 +15,7 @@ TagManager:
   - Food
   - DeathTrigger
   - LevelMusicPlayer
+  - Wall
   layers:
   - Default
   - TransparentFX
