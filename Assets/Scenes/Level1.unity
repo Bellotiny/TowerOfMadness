@@ -12162,7 +12162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f26eb809966fcd40a80f4364c21f16f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f26eb809966fcd40a80f4364c21f16f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19257,8 +19257,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c800e76b19f14501860f9ff0d30ceed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   shakeDuration: 1
   shakeAmount: 0.2
+  fallDistance: 2
+  fallDuration: 0.5
   disappearDelay: 1
 --- !u!1001 &955694331
 PrefabInstance:
@@ -20388,7 +20391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968217078}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0030048904, y: 0.99428326, z: -0.10269033, w: -0.029094387}
+  m_LocalRotation: {x: -0.0030048895, y: 0.9942833, z: -0.10269032, w: -0.029094385}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32207,8 +32210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c800e76b19f14501860f9ff0d30ceed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   shakeDuration: 1
   shakeAmount: 0.2
+  fallDistance: 2
+  fallDuration: 0.5
   disappearDelay: 1
 --- !u!65 &1321074547
 BoxCollider:
@@ -33673,8 +33679,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c800e76b19f14501860f9ff0d30ceed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   shakeDuration: 1
   shakeAmount: 0.2
+  fallDistance: 2
+  fallDuration: 0.5
   disappearDelay: 1
 --- !u!65 &1447275445
 BoxCollider:

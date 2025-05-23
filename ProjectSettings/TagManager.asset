@@ -16,6 +16,7 @@ TagManager:
   - DeathTrigger
   - LevelMusicPlayer
   - Wall
+  - Frontbar
   layers:
   - Default
   - TransparentFX
