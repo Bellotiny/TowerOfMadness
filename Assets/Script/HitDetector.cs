@@ -4,35 +4,55 @@ using UnityEngine;
 
 public class HitDetector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private float playerHitCooldown = 1.0f;
+    private float lastHitTime = -Mathf.Infinity;
+
+    private EnemyController enemyController;
+
+    private void Start()
     {
-        
+        enemyController = GetComponentInParent<EnemyController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
-    private void OnTriggerEnter(Collider other){
         if (other.CompareTag("Enemy"))
         {
-            EnemyHealth enemyHealth =  other.GetComponent<EnemyHealth>();
-            EnemyController enemyController =  other.GetComponent<EnemyController>();
-            if (enemyController  != null)
+            if (enemyController != null)
             {
                 enemyController.GotHit();
                 enemyHealth.TakeDamage(25);
             }
         }
-         if (other.CompareTag("Player"))
+
+        if (other.CompareTag("Player"))
         {
-            PlayerHealth playerHealth =  other.GetComponent<PlayerHealth>();
-            if (playerHealth  != null)
+            if (Time.time - lastHitTime < playerHitCooldown) return;
+
+            if (playerHealth != null)
             {
-                playerHealth.TakeDamage(10);
+                if (enemyController != null)
+                {
+                    if (enemyController.isMob)
+                    {
+                        Debug.Log("It's a Mob!");
+                        playerHealth.TakeDamage(10);
+                    }
+                    else
+                    {
+                        Debug.Log("It's a Boss!");
+                        playerHealth.TakeDamage(25);
+                    }
+                }
+                else
+                {
+                    Debug.Log("There is no Enemy Controller!");
+                }
+
+                lastHitTime = Time.time;
             }
         }
     }

@@ -40,9 +40,9 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
-        Debug.Log($"{gameObject.name} - CurrentState: {currentState}");
-        Debug.Log($"{gameObject.name} - CanSeePlayer: {CanSeePlayer()}");
-        Debug.Log($"{gameObject.name} - canAttack: {canAttack}");
+        // Debug.Log($"{gameObject.name} - CurrentState: {currentState}");
+        // Debug.Log($"{gameObject.name} - CanSeePlayer: {CanSeePlayer()}");
+        // Debug.Log($"{gameObject.name} - canAttack: {canAttack}");
 
         if (!isMob && MobEnemyController.activeMobs.Count > 0)
         {
@@ -96,7 +96,7 @@ public class EnemyController : MonoBehaviour
         isHit = true;
         hitParticles.Play();
         animator.SetTrigger("GotHit");
-        health.TakeDamage(damageTaken);
+        // health.TakeDamage(damageTaken);
         Agent.isStopped = true;
 
         yield return new WaitForSeconds(0.5f);
