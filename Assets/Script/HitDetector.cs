@@ -28,7 +28,7 @@ public class HitDetector : MonoBehaviour
 
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(25);
+                enemyHealth.TakeDamage(20);
             }
             else
             {

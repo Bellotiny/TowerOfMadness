@@ -53,7 +53,7 @@ public class EnemyController : MonoBehaviour
         currentState = StateMachine.GetCurrentStateType();
         StateMachine.Update();
         float speed = Agent.velocity.magnitude;
-        animator.SetFloat("Speed", speed);
+        animator.SetFloat("speed", speed);
 
         // var foundMobs = FindObjectsOfType<MobEnemyController>();
         // if(foundMobs.Length == 0){
