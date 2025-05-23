@@ -17,6 +17,8 @@ TagManager:
   - LevelMusicPlayer
   - Wall
   - Frontbar
+  - Apple
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

@@ -55,26 +55,39 @@ public class GameManager : MonoBehaviour
         }
     }
 
-     public void HandleCurrentLevelFailure()
+    public void HandleCurrentLevelFailure()
     {
         TrapManager.Instance.MinusLive();
-        Debug.Log( TrapManager.Instance.GetLives() <= 0);
+        Debug.Log(TrapManager.Instance.GetLives() <= 0);
         if (TrapManager.Instance.GetLives() <= 0)
         {
             HandleGameOver();
+            return;
         }
-        else
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.ResetLifeSpan();
+                playerHealth.ResetLifeSpan(); // Reset health
             }
-            ScoreManager.Instance.SubtractScore();
-            //ResetJumpBoost();
-            //ResetSpeedBoost();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            // Respawn at checkpoint if available
+            if (CheckpointManager.Instance != null && CheckpointManager.Instance.HasCheckpoint())
+            {
+                player.transform.position = CheckpointManager.Instance.GetCheckpoint();
+                Debug.Log("Player respawned at checkpoint.");
+            }
+            else
+            {
+                Debug.Log("No checkpoint found. Reloading scene...");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
+
+        ScoreManager.Instance.SubtractScore();
     }
 
      private void HandleGameOver()
