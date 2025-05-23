@@ -10,8 +10,14 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    
+    public void Control()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
-    public void QuitGame(){
+    public void QuitGame()
+    {
         // If you're in the editor, this won't fully work,
         // but in a built application, this will quit the game.
         Application.Quit();
