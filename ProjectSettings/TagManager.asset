@@ -15,6 +15,8 @@ TagManager:
   - Food
   - DeathTrigger
   - LevelMusicPlayer
+  - Weapon
+  - Axe
   layers:
   - Default
   - TransparentFX

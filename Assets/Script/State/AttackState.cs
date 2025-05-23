@@ -5,7 +5,7 @@ public class AttackState : IState
 {
     private EnemyController enemyController;
     public StateType Type => StateType.Attack;
-    private float attackCooldown = 1.5f;
+    private float attackCooldown = 2.5f;
     private float lastAttackTime = -Mathf.Infinity;
 
     public AttackState(EnemyController enemyController)

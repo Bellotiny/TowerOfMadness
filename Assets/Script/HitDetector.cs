@@ -7,11 +7,13 @@ public class HitDetector : MonoBehaviour
     private float playerHitCooldown = 1.0f;
     private float lastHitTime = -Mathf.Infinity;
 
+    private EnemyController parentEnemyController;
     private EnemyController enemyController;
 
     private void Start()
     {
-        enemyController = GetComponentInParent<EnemyController>();
+        parentEnemyController = GetComponentInParent<EnemyController>();
+        enemyController = GetComponent<EnemyController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,9 +36,9 @@ public class HitDetector : MonoBehaviour
 
             if (playerHealth != null)
             {
-                if (enemyController != null)
+                if (parentEnemyController != null)
                 {
-                    if (enemyController.isMob)
+                    if (parentEnemyController.isMob)
                     {
                         Debug.Log("It's a Mob!");
                         playerHealth.TakeDamage(10);

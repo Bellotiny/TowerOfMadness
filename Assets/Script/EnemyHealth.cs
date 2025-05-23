@@ -19,9 +19,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage){
         currentHealth -= damage;
-        animator.SetTrigger("GotHit");
-        Debug.Log("Centinel Got Hit!!");
-        Debug.Log("Current Health: " + currentHealth);
+        //animator.SetTrigger("GotHit");
+        Debug.Log("Spider Got Hit!!");
+        Debug.Log("Spider Health: " + currentHealth);
         //healthbar.value = currentHealth;
         if(currentHealth <= 0){
             Die();
