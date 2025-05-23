@@ -22,6 +22,8 @@ TagManager:
   - PlantTrap
   - FireTrap
   - Orb
+  - Weapon
+  - Axe
   layers:
   - Default
   - TransparentFX

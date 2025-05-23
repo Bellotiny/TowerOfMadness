@@ -7,25 +7,46 @@ public class HitDetector : MonoBehaviour
     private float playerHitCooldown = 1.0f;
     private float lastHitTime = -Mathf.Infinity;
 
-    private EnemyController enemyController;
+    private EnemyController parentEnemyController;
+    //private EnemyController enemyController;
 
     private void Start()
     {
-        enemyController = GetComponentInParent<EnemyController>();
+        parentEnemyController = GetComponentInParent<EnemyController>();
+        //enemyController = GetComponent<EnemyController>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+        EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
         if (other.CompareTag("Enemy"))
         {
-            if (enemyController != null)
+            EnemyController ec = other.GetComponentInParent<EnemyController>();
+            MobEnemyController mec = other.GetComponentInParent<MobEnemyController>();
+
+            if (enemyHealth != null)
             {
-                enemyController.GotHit();
-                enemyHealth.TakeDamage(25);
+                enemyHealth.TakeDamage(20);
             }
+            else
+            {
+                Debug.Log("Missing enemy health!!!");
+            }
+            if (ec != null)
+            {
+                ec.GotHit();
+            }
+            else if (mec != null)
+            {
+                mec.GotHit();
+            }
+            else
+            {
+                Debug.LogWarning("No valid enemy controller (Boss or Mob) found!");
+            }
+            
         }
 
         if (other.CompareTag("Player"))
@@ -34,9 +55,9 @@ public class HitDetector : MonoBehaviour
 
             if (playerHealth != null)
             {
-                if (enemyController != null)
+                if (parentEnemyController != null)
                 {
-                    if (enemyController.isMob)
+                    if (parentEnemyController.isMob)
                     {
                         Debug.Log("It's a Mob!");
                         playerHealth.TakeDamage(10);

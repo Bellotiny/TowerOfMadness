@@ -9,8 +9,10 @@ public class CharacterMovement : MonoBehaviour
     // ============================== Weapons ==============================
     [Header("Weapons")]
     [SerializeField] private GameObject sword;
+    [SerializeField] private GameObject axe;
     [SerializeField] private GameObject holster;
     private GameObject holsteredSword;
+    private GameObject holsteredAxe;
 
     // ============================== Movement Settings ==============================
     [Header("Movement Settings")]
@@ -62,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
     private bool IsRunning = false;
     public bool doFlip = false;
     private bool isSwordEquipped = false;
+    private bool isAxeEquipped = false;
 
     // ============================== Unity Built-in Methods ==============================
 
@@ -114,11 +117,20 @@ public class CharacterMovement : MonoBehaviour
         rb.freezeRotation = true; // Prevent Rigidbody from rotating due to physics interactions
         rb.interpolation = RigidbodyInterpolation.Interpolate; // Smooth physics interpolation
 
-        sword = sword.transform.Find("SwordParent").gameObject;
-        sword = sword.transform.Find("Sword").gameObject;
+        sword = sword.transform.Find("SwordParent/Sword").gameObject;
+        axe = axe.transform.Find("AxeParent/Axe").gameObject;
+        if (!sword || !axe || !holster) {
+            Debug.LogError("Weapon references not assigned in the Inspector!");
+        }
+        axe.SetActive(false);
         sword.SetActive(false);
         holsteredSword = holster.transform.Find("Holstered Sword").gameObject;
+        holsteredAxe = holster.transform.Find("Holstered Axe").gameObject;
+        if (!holsteredSword || !holsteredAxe) {
+            Debug.LogError("Holstered weapons not found under holster.");
+        }
         holsteredSword.SetActive(true);
+        holsteredAxe.SetActive(true);
         // sword.transform.SetParent(mixamorig:RightHand);
         // sword.transform.localPosition = Vector3.zero; // Adjust if needed
         // sword.transform.localRotation = Quaternion.identity;
@@ -154,10 +166,16 @@ public class CharacterMovement : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){
+            //Debug.Log("Key 1 pressed!");
             ToggleSword();
         }
+        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)){
+            //Debug.Log("Key 2 pressed!");
+            ToggleAxe();
+        }
 
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             Dash();
         }
         if(Input.GetKeyDown(KeyCode.E)){
@@ -297,42 +315,74 @@ public class CharacterMovement : MonoBehaviour
     }
     private void ToggleSword(){
         isSwordEquipped = !isSwordEquipped;
-        
-        //Transform holsteredBow = holster.transform.Find("Holstered Bow");
-
-        if(animator != null){
-            if(isSwordEquipped){
-                holsteredSword.SetActive(false);
-                sword.SetActive(true);
-                animator.SetTrigger("EquipSword");
-                animator.SetBool("IsSwordEquipped",true);
-            }
-            else{
-                if(animator != null){
-                    animator.SetTrigger("SheathSword");
-                    animator.SetBool("IsSwordEquipped",false);
-                }
-                
-                sword.SetActive(false);
-                holsteredSword.SetActive(true);
-            }
-            
+        if (isSwordEquipped){
+            // Deactivate Axe
+            isAxeEquipped = false;
+            axe.SetActive(false);
+            holsteredAxe.SetActive(true);
+            //Debug.Log("Equip Sword");
+            holsteredSword.SetActive(false);
+            sword.SetActive(true);
+            animator.SetTrigger("EquipSword");
+            animator.SetBool("IsSwordEquipped", true);
+        } else {
+            //Debug.Log("Sheathe Sword");
+            animator.SetTrigger("SheathSword");
+            animator.SetBool("IsSwordEquipped", false);
+            sword.SetActive(false);
+            holsteredSword.SetActive(true);
         }
     }
-    private void SlashAttack(){
-        if(animator != null){
-            if(isSwordEquipped){
-                animator.SetTrigger("DoAttack");
-            }
+    private void ToggleAxe(){
+        isAxeEquipped = !isAxeEquipped;
+        if (isAxeEquipped){
             
+            isSwordEquipped = false;
+            sword.SetActive(false);
+            holsteredSword.SetActive(true);
+            //Debug.Log("Equip Axe");
+            holsteredAxe.SetActive(false);
+            axe.SetActive(true);
+            animator.SetTrigger("EquipAxe");
+            animator.SetBool("IsAxeEquipped", true);
+        } else {
+            //Debug.Log("Disarm Axe");
+            animator.SetTrigger("DisarmAxe");
+            animator.SetBool("IsAxeEquipped", false);
+            axe.SetActive(false);
+            holsteredAxe.SetActive(true);
+        }
+    }
+    private void SlashAttack()
+    {
+        if (animator != null)
+        {
+            // Debug.Log("Animator Parameters for Sword: " + animator.GetBool("IsSwordEquipped"));
+            // Debug.Log("Animator Parameters for Axe: " + animator.GetBool("IsAxeEquipped"));
+            if (isSwordEquipped)
+            {
+                //Debug.Log("DoSwordAttack1");
+                animator.SetTrigger("DoSwordAttack1");
+            }
+            if (isAxeEquipped)
+            {
+                //Debug.Log("DoAxeAttack1");
+                animator.SetTrigger("DoAxeAttack1");
+            }
+
         }
     }
     private void ComboAttack(){
         if(animator != null){
             if(isSwordEquipped){
-                animator.SetTrigger("DoAttack2");
+                Debug.Log("DoSwordAttack2");
+                animator.SetTrigger("DoSwordAttack2");
             }
-            
+            if (isAxeEquipped)
+            {
+                Debug.Log("DoAxeAttack2");
+                animator.SetTrigger("DoAxeAttack2");
+            }
         }
     }
     private void Dash(){
