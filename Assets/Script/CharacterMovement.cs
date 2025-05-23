@@ -166,11 +166,11 @@ public class CharacterMovement : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){
-            Debug.Log("Key 1 pressed!");
+            //Debug.Log("Key 1 pressed!");
             ToggleSword();
         }
         if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)){
-            Debug.Log("Key 2 pressed!");
+            //Debug.Log("Key 2 pressed!");
             ToggleAxe();
         }
 
@@ -320,13 +320,13 @@ public class CharacterMovement : MonoBehaviour
             isAxeEquipped = false;
             axe.SetActive(false);
             holsteredAxe.SetActive(true);
-            Debug.Log("Equip Sword");
+            //Debug.Log("Equip Sword");
             holsteredSword.SetActive(false);
             sword.SetActive(true);
             animator.SetTrigger("EquipSword");
             animator.SetBool("IsSwordEquipped", true);
         } else {
-            Debug.Log("Sheathe Sword");
+            //Debug.Log("Sheathe Sword");
             animator.SetTrigger("SheathSword");
             animator.SetBool("IsSwordEquipped", false);
             sword.SetActive(false);
@@ -340,13 +340,13 @@ public class CharacterMovement : MonoBehaviour
             isSwordEquipped = false;
             sword.SetActive(false);
             holsteredSword.SetActive(true);
-            Debug.Log("Equip Axe");
+            //Debug.Log("Equip Axe");
             holsteredAxe.SetActive(false);
             axe.SetActive(true);
             animator.SetTrigger("EquipAxe");
             animator.SetBool("IsAxeEquipped", true);
         } else {
-            Debug.Log("Disarm Axe");
+            //Debug.Log("Disarm Axe");
             animator.SetTrigger("DisarmAxe");
             animator.SetBool("IsAxeEquipped", false);
             axe.SetActive(false);
@@ -357,16 +357,16 @@ public class CharacterMovement : MonoBehaviour
     {
         if (animator != null)
         {
-            Debug.Log("Animator Parameters for Sword: " + animator.GetBool("IsSwordEquipped"));
-            Debug.Log("Animator Parameters for Axe: " + animator.GetBool("IsAxeEquipped"));
+            // Debug.Log("Animator Parameters for Sword: " + animator.GetBool("IsSwordEquipped"));
+            // Debug.Log("Animator Parameters for Axe: " + animator.GetBool("IsAxeEquipped"));
             if (isSwordEquipped)
             {
-                Debug.Log("DoSwordAttack1");
+                //Debug.Log("DoSwordAttack1");
                 animator.SetTrigger("DoSwordAttack1");
             }
             if (isAxeEquipped)
             {
-                Debug.Log("DoAxeAttack1");
+                //Debug.Log("DoAxeAttack1");
                 animator.SetTrigger("DoAxeAttack1");
             }
 

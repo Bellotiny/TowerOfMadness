@@ -8,26 +8,45 @@ public class HitDetector : MonoBehaviour
     private float lastHitTime = -Mathf.Infinity;
 
     private EnemyController parentEnemyController;
-    private EnemyController enemyController;
+    //private EnemyController enemyController;
 
     private void Start()
     {
         parentEnemyController = GetComponentInParent<EnemyController>();
-        enemyController = GetComponent<EnemyController>();
+        //enemyController = GetComponent<EnemyController>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+        EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
         if (other.CompareTag("Enemy"))
         {
-            if (enemyController != null)
+            EnemyController ec = other.GetComponentInParent<EnemyController>();
+            MobEnemyController mec = other.GetComponentInParent<MobEnemyController>();
+
+            if (enemyHealth != null)
             {
-                enemyController.GotHit();
                 enemyHealth.TakeDamage(25);
             }
+            else
+            {
+                Debug.Log("Missing enemy health!!!");
+            }
+            if (ec != null)
+            {
+                ec.GotHit();
+            }
+            else if (mec != null)
+            {
+                mec.GotHit();
+            }
+            else
+            {
+                Debug.LogWarning("No valid enemy controller (Boss or Mob) found!");
+            }
+            
         }
 
         if (other.CompareTag("Player"))
