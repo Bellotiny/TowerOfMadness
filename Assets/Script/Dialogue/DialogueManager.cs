@@ -51,6 +51,19 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void LoadDialogueFromFile(string fileName)
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("Dialogue/" + fileName);
+        if (jsonFile == null)
+        {
+            Debug.LogError($"Dialogue file {fileName} not found!");
+            return;
+        }
+
+        DialogueContainer container = JsonUtility.FromJson<DialogueContainer>(jsonFile.text);
+        StartDialogue(container.lines);
+    }
+
     private void EndDialogue()
     {
         dialoguePanel.SetActive(false);

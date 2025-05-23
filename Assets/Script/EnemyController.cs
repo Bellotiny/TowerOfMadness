@@ -40,9 +40,9 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
-        Debug.Log($"{gameObject.name} - CurrentState: {currentState}");
-        Debug.Log($"{gameObject.name} - CanSeePlayer: {CanSeePlayer()}");
-        Debug.Log($"{gameObject.name} - canAttack: {canAttack}");
+        // Debug.Log($"{gameObject.name} - CurrentState: {currentState}");
+        // Debug.Log($"{gameObject.name} - CanSeePlayer: {CanSeePlayer()}");
+        // Debug.Log($"{gameObject.name} - canAttack: {canAttack}");
 
         if (!isMob && MobEnemyController.activeMobs.Count > 0)
         {
@@ -52,19 +52,12 @@ public class EnemyController : MonoBehaviour
         canAttack = true;
         currentState = StateMachine.GetCurrentStateType();
         StateMachine.Update();
-        animator.SetFloat("speed", Agent.velocity.magnitude);
+        float speed = Agent.velocity.magnitude;
+        animator.SetFloat("Speed", speed);
 
         // var foundMobs = FindObjectsOfType<MobEnemyController>();
         // if(foundMobs.Length == 0){
         //     canAttack = true;
-        // }
-
-        //Debug.Log(foundMobs + " : " + foundMobs.Length);
-
-        // if (CanSeePlayer() && canAttack && (currentState != StateType.Chase || currentState != StateType.Attack)){
-        //     Debug.Log("Chasing Player...");
-        //     StateMachine.TransitionToState(StateType.Chase);
-        //     return;
         // }
         if (CanSeePlayer() && canAttack && currentState != StateType.Chase && currentState != StateType.Attack)
         {
@@ -103,7 +96,7 @@ public class EnemyController : MonoBehaviour
         isHit = true;
         hitParticles.Play();
         animator.SetTrigger("GotHit");
-        health.TakeDamage(damageTaken);
+        // health.TakeDamage(damageTaken);
         Agent.isStopped = true;
 
         yield return new WaitForSeconds(0.5f);
