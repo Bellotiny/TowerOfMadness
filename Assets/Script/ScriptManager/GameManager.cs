@@ -110,6 +110,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("EndScene");
     }
 
+    private void CheckLevelCompletionConditions()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] orbs = GameObject.FindGameObjectsWithTag("Orb");
+
+        if (enemies.Length == 0 && orbs.Length >= 2)
+        {
+            LoadNextLevel();
+        }
+    }
+
      private void UpdateFoodScoreUI(int newScore)
     {
         foodText.text = "Food: " + newScore;
@@ -152,6 +163,7 @@ public class GameManager : MonoBehaviour
             //timePlayed += Time.deltaTime;
             //totalTimePlayed = timePlayed;
             //UpdateTimeUI(timePlayed);
+            CheckLevelCompletionConditions();
         }
 
         if (playerMovement == null)
