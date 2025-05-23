@@ -78,11 +78,11 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {// && !isInAir
-        if (IsGrounded)  // Only reset when we are grounded and was previously in the air
+        if (IsGrounded && rb.velocity.y == 0)  // Only reset when we are grounded and was previously in the air
         {
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
-            doFlip = false;  // Stop flip animation when grounded
+            //doFlip = false;  // Stop flip animation when grounded
             isInAir = false;
         }
         
@@ -241,12 +241,12 @@ public class CharacterMovement : MonoBehaviour
         }else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
         {
             // SECOND JUMP (Flip)
-            Vector3 currentVelocity = rb.velocity; // Get the current velocity
-            float flipHorizontalVelocityFactor = 1.0f; // Scale horizontal velocity on flip jump, if needed
+            Vector3 currentVelocity = rb.velocity;
+            float flipHorizontalVelocityFactor = 1.0f;
 
             rb.velocity = new Vector3(currentVelocity.x * flipHorizontalVelocityFactor, 0f, currentVelocity.z * flipHorizontalVelocityFactor);
-            rb.AddForce(Vector3.up * (jumpForce * 1.2f), ForceMode.Impulse); // Higher force for flip
-            //PlayFlipSound(); // Play sound
+            rb.AddForce(Vector3.up * (jumpForce * 1.2f), ForceMode.Impulse);
+            //PlayFlipSound();
             jumpCount = 0;
             //isFlipping = true;
             //animator.SetBool("isFlipping", isFlipping);
