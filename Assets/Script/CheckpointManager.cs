@@ -13,7 +13,7 @@ public class CheckpointManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            lastCheckpoint = Vector3.zero; // Default spawn
+            lastCheckpoint = Vector3.zero; 
         }
         else
         {
@@ -34,6 +34,6 @@ public class CheckpointManager : MonoBehaviour
     
     public bool HasCheckpoint()
     {
-        return lastCheckpoint != Vector3.zero; // Or use a bool if you need more accuracy
+        return lastCheckpoint != Vector3.zero; 
     }
 }

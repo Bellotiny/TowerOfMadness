@@ -19,6 +19,9 @@ TagManager:
   - Frontbar
   - Apple
   - Checkpoint
+  - PlantTrap
+  - FireTrap
+  - Orb
   layers:
   - Default
   - TransparentFX

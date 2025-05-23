@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
      [Header("UI Elements")]
-
      public TextMeshProUGUI foodText;
     public TextMeshProUGUI livesText;
+    public Slider healthSlider;
 
     private CharacterMovement playerMovement;
     public bool isPlaying = true;
@@ -52,6 +53,11 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             playerMovement = player.GetComponent<CharacterMovement>();
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                UpdateHealthUI(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
+            }
         }
     }
 
@@ -71,10 +77,10 @@ public class GameManager : MonoBehaviour
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.ResetLifeSpan(); // Reset health
+                playerHealth.ResetLifeSpan(); // Reset health to max
+                UpdateHealthUI(playerHealth.GetCurrentHealth(), playerHealth.maxHealth); //  update this slider
             }
 
-            // Respawn at checkpoint if available
             if (CheckpointManager.Instance != null && CheckpointManager.Instance.HasCheckpoint())
             {
                 player.transform.position = CheckpointManager.Instance.GetCheckpoint();
@@ -84,8 +90,10 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("No checkpoint found. Reloading scene...");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            } 
         }
+
+       
 
         ScoreManager.Instance.SubtractScore();
     }
@@ -112,12 +120,23 @@ public class GameManager : MonoBehaviour
         livesText.text = "" + lives;
     }
 
+    public void UpdateHealthUI(int currentHealth, int maxHealth)
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
+    }
+
     public void ResetAllUI()
     {
         foodText.text = "Food: 0";
         livesText.text = "Lives: 3";
         //ResetTime();
     }
+    
+
 
     // public void UpdatePickupText(string message)
     // {
@@ -125,8 +144,8 @@ public class GameManager : MonoBehaviour
     //     isPickupTextActive = true;
     //     pickupTimer = pickupDuration;
     // }
-    
-     private void Update()
+
+    private void Update()
     {
         if (isPlaying)
         {

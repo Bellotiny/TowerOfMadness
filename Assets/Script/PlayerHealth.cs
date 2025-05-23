@@ -14,12 +14,15 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
-        if (animator == null){
+        if (animator == null)
+        {
             Debug.LogError("Animator component missing!");
         }
     }
-    void Update(){
-        if(currentHealth <= 0){
+    void Update()
+    {
+        if (currentHealth <= 0)
+        {
             Die();
         }
     }
@@ -28,22 +31,37 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         animator.SetTrigger("GotHit");
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.UpdateHealthUI(currentHealth, maxHealth);
+        }
+
         Debug.Log("Damage Received: " + damage);
         Debug.Log("Current health: " + currentHealth);
         //UpdateHealthText();
     }
 
-    public void Die(){
+    public void Die()
+    {
         animator.SetTrigger("Die");
-        if(GameManager.Instance != null){
+        if (GameManager.Instance != null)
+        {
             GameManager.Instance.HandleCurrentLevelFailure();
         }
     }
 
-    public void ResetLifeSpan(){
+    public void ResetLifeSpan()
+    {
         currentHealth = maxHealth;
 
     }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    
 
     // public void Heal(int amount)
     // {
