@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("PracEnemy");
         //GameObject[] orbs = GameObject.FindGameObjectsWithTag("Orb");
         int orbs = ScoreManager.Instance.GetOrbCount();
-        Debug.Log("enemies: " + enemies.Length);
+        // Debug.Log("enemies: " + enemies.Length);
 
         if (enemies.Length == 0 && orbs >= 2)
         {
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
             //timePlayed += Time.deltaTime;
             //totalTimePlayed = timePlayed;
             //UpdateTimeUI(timePlayed);
-            Debug.Log("CheckingCondition");
+            // Debug.Log("CheckingCondition");
             CheckLevelCompletionConditions();
         }
 
