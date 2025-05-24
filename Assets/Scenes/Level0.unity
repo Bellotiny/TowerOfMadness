@@ -1686,6 +1686,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58af679218d85dc4f9ec4682bf7cb501, type: 3}
   m_PrefabInstance: {fileID: 152726593}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &156514285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 156514287}
+  - component: {fileID: 156514286}
+  m_Layer: 0
+  m_Name: Damage Pop-Up Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &156514286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156514285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64b4c223f9ec71439300ef4e5259997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 489773113}
+--- !u!4 &156514287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156514285}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1970556, y: -15.477502, z: 189.87064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &163783111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,6 +5482,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2148412142962102433, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
   m_PrefabInstance: {fileID: 1647644809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &489773113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5352946208695238462, guid: 806b24dd2366a90429d8e49facb11321, type: 3}
+  m_PrefabInstance: {fileID: 5261386747957526222}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &504796393 stripped
 GameObject:
@@ -26364,6 +26414,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Damage Pop-Up
       objectReference: {fileID: 0}
+    - target: {fileID: 6307756765063201572, guid: 806b24dd2366a90429d8e49facb11321, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -845591507520387720, guid: ebd97ed7973b37249a31dec29f4233f9, type: 2}
+    - target: {fileID: 6307756765063201572, guid: 806b24dd2366a90429d8e49facb11321, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307756765063201572, guid: 806b24dd2366a90429d8e49facb11321, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6916381463706676148, guid: 806b24dd2366a90429d8e49facb11321, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -26494,3 +26556,4 @@ SceneRoots:
   - {fileID: 299836501303264010}
   - {fileID: 1281796330}
   - {fileID: 554773014}
+  - {fileID: 156514287}
