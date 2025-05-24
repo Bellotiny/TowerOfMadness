@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInRoom : MonoBehaviour
 {
     private TrapAltar[] trapAltars;
-
     void Start()
     {
         trapAltars = GetComponentsInChildren<TrapAltar>();

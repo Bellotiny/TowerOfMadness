@@ -6,6 +6,8 @@ public class HitDetector : MonoBehaviour
 {
     private float playerHitCooldown = 1.0f;
     private float lastHitTime = -Mathf.Infinity;
+    private AudioSource audioSource;
+    public AudioClip swordSound;
 
     private EnemyController parentEnemyController;
     //private EnemyController enemyController;
@@ -29,6 +31,7 @@ public class HitDetector : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(20);
+                audioSource.PlayOneShot(swordSound);
             }
             else
             {
