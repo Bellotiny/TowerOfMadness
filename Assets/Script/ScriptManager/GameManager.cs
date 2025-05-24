@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
      [Header("UI Elements")]
-
      public TextMeshProUGUI foodText;
     public TextMeshProUGUI livesText;
+    public Slider healthSlider;
 
     private CharacterMovement playerMovement;
     public bool isPlaying = true;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {//&& TrapManager.Instance != null
-        if (ScoreManager.Instance != null )
+        if (ScoreManager.Instance != null)
         {
             FindPlayer();
             ScoreManager.Instance.OnFoodScoreChanged += UpdateFoodScoreUI;
@@ -42,6 +43,9 @@ public class GameManager : MonoBehaviour
             TrapManager.Instance.OnGameOver += HandleGameOver;
             UpdateFoodScoreUI(ScoreManager.Instance.GetScore());
             UpdateLivesCountUI(TrapManager.Instance.GetLives());
+            
+            ScoreManager.Instance.ResetOrbCount();
+            CheckpointManager.Instance.ClearCheckpointOnFirstLoad();
         }
     }
 
@@ -52,29 +56,49 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             playerMovement = player.GetComponent<CharacterMovement>();
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                UpdateHealthUI(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
+            }
         }
     }
 
-     public void HandleCurrentLevelFailure()
+    public void HandleCurrentLevelFailure()
     {
         TrapManager.Instance.MinusLive();
-        Debug.Log( TrapManager.Instance.GetLives() <= 0);
+        Debug.Log(TrapManager.Instance.GetLives() <= 0);
         if (TrapManager.Instance.GetLives() <= 0)
         {
             HandleGameOver();
+            return;
         }
-        else
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.ResetLifeSpan();
+                playerHealth.ResetLifeSpan(); // Reset health to max
+                UpdateHealthUI(playerHealth.GetCurrentHealth(), playerHealth.maxHealth); //  update this slider
             }
-            ScoreManager.Instance.SubtractScore();
-            //ResetJumpBoost();
-            //ResetSpeedBoost();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            if (CheckpointManager.Instance != null && CheckpointManager.Instance.HasCheckpoint())
+            {
+                player.transform.position = CheckpointManager.Instance.GetCheckpoint();
+                Debug.Log("Player respawned at checkpoint.");
+            }
+            else
+            {
+                Debug.Log("No checkpoint found. Reloading scene...");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            } 
         }
+
+       
+
+        ScoreManager.Instance.SubtractScore();
     }
 
      private void HandleGameOver()
@@ -89,6 +113,64 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("EndScene");
     }
 
+    private void CheckLevelCompletionConditions()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("PracEnemy");
+        //GameObject[] orbs = GameObject.FindGameObjectsWithTag("Orb");
+        int orbs = ScoreManager.Instance.GetOrbCount();
+        Debug.Log("enemies: " + enemies.Length);
+
+        if (enemies.Length == 0 && orbs >= 2)
+        {
+            LoadNextLevel();
+        }
+    }
+
+    private void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            //save score then reset orb
+            ScoreManager.Instance.SaveScore();
+            ScoreManager.Instance.ResetOrbCount();
+            CheckpointManager.Instance.ResetCheckpointState();//reset checkpount
+
+            //SceneManager.LoadScene(nextSceneIndex);
+            StartCoroutine(LoadSceneAndResetPlayer(nextSceneIndex));//delay for a bit
+        }
+        else
+        {
+            Debug.Log("No more scenes available. Staying on current scene.");
+        }
+    }
+
+    private IEnumerator LoadSceneAndResetPlayer(int sceneIndex)
+    {
+        yield return SceneManager.LoadSceneAsync(sceneIndex);
+
+        // Wait one frame for scene load to finish
+        yield return null;
+
+        // Reset player health
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ResetLifeSpan();
+                UpdateHealthUI(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
+            }
+        }
+
+        
+        CheckpointManager.Instance.ClearCheckpointOnFirstLoad();
+    }
+
+
      private void UpdateFoodScoreUI(int newScore)
     {
         foodText.text = "Food: " + newScore;
@@ -99,12 +181,23 @@ public class GameManager : MonoBehaviour
         livesText.text = "" + lives;
     }
 
+    public void UpdateHealthUI(int currentHealth, int maxHealth)
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
+    }
+
     public void ResetAllUI()
     {
         foodText.text = "Food: 0";
         livesText.text = "Lives: 3";
         //ResetTime();
     }
+    
+
 
     // public void UpdatePickupText(string message)
     // {
@@ -112,14 +205,16 @@ public class GameManager : MonoBehaviour
     //     isPickupTextActive = true;
     //     pickupTimer = pickupDuration;
     // }
-    
-     private void Update()
+
+    private void Update()
     {
         if (isPlaying)
         {
             //timePlayed += Time.deltaTime;
             //totalTimePlayed = timePlayed;
             //UpdateTimeUI(timePlayed);
+            Debug.Log("CheckingCondition");
+            CheckLevelCompletionConditions();
         }
 
         if (playerMovement == null)

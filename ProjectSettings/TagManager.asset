@@ -15,8 +15,18 @@ TagManager:
   - Food
   - DeathTrigger
   - LevelMusicPlayer
+  - Wall
+  - Frontbar
+  - Apple
+  - Checkpoint
+  - PlantTrap
+  - FireTrap
+  - Orb
   - Weapon
   - Axe
+  - PracEnemy
+  - WallToOpen
+  - Watermelon
   layers:
   - Default
   - TransparentFX

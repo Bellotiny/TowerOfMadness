@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private CharacterMovement movement;
     private Rigidbody rb;
-    [SerializeField] private float fallThresholdY = -10f;
+    [SerializeField] private float fallThresholdY = -25f;
     private PlayerHealth health;
     public Collider[] attackColliders;
     void Start()
