@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {//&& TrapManager.Instance != null
-        if (ScoreManager.Instance != null )
+        if (ScoreManager.Instance != null)
         {
             FindPlayer();
             ScoreManager.Instance.OnFoodScoreChanged += UpdateFoodScoreUI;
@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
             TrapManager.Instance.OnGameOver += HandleGameOver;
             UpdateFoodScoreUI(ScoreManager.Instance.GetScore());
             UpdateLivesCountUI(TrapManager.Instance.GetLives());
+            
+            ScoreManager.Instance.ResetOrbCount();
+            CheckpointManager.Instance.ClearCheckpointOnFirstLoad();
         }
     }
 
@@ -112,14 +115,61 @@ public class GameManager : MonoBehaviour
 
     private void CheckLevelCompletionConditions()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject[] orbs = GameObject.FindGameObjectsWithTag("Orb");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("PracEnemy");
+        //GameObject[] orbs = GameObject.FindGameObjectsWithTag("Orb");
+        int orbs = ScoreManager.Instance.GetOrbCount();
+        Debug.Log("enemies: " + enemies.Length);
 
-        if (enemies.Length == 0 && orbs.Length >= 2)
+        if (enemies.Length == 0 && orbs >= 2)
         {
             LoadNextLevel();
         }
     }
+
+    private void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            //save score then reset orb
+            ScoreManager.Instance.SaveScore();
+            ScoreManager.Instance.ResetOrbCount();
+            CheckpointManager.Instance.ResetCheckpointState();//reset checkpount
+
+            //SceneManager.LoadScene(nextSceneIndex);
+            StartCoroutine(LoadSceneAndResetPlayer(nextSceneIndex));//delay for a bit
+        }
+        else
+        {
+            Debug.Log("No more scenes available. Staying on current scene.");
+        }
+    }
+
+    private IEnumerator LoadSceneAndResetPlayer(int sceneIndex)
+    {
+        yield return SceneManager.LoadSceneAsync(sceneIndex);
+
+        // Wait one frame for scene load to finish
+        yield return null;
+
+        // Reset player health
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ResetLifeSpan();
+                UpdateHealthUI(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
+            }
+        }
+
+        
+        CheckpointManager.Instance.ClearCheckpointOnFirstLoad();
+    }
+
 
      private void UpdateFoodScoreUI(int newScore)
     {
@@ -163,6 +213,7 @@ public class GameManager : MonoBehaviour
             //timePlayed += Time.deltaTime;
             //totalTimePlayed = timePlayed;
             //UpdateTimeUI(timePlayed);
+            Debug.Log("CheckingCondition");
             CheckLevelCompletionConditions();
         }
 

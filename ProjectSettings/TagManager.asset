@@ -24,6 +24,9 @@ TagManager:
   - Orb
   - Weapon
   - Axe
+  - PracEnemy
+  - WallToOpen
+  - Watermelon
   layers:
   - Default
   - TransparentFX
