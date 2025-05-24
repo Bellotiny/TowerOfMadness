@@ -16254,6 +16254,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2238276474927746779, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
+      propertyPath: footstepSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 92ba6ec5039b7984ab29299a8aa9c378, type: 3}
+    - target: {fileID: 2238276474927746779, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
       propertyPath: fallThresholdY
       value: -14
       objectReference: {fileID: 0}
