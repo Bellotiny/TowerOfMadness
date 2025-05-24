@@ -15500,7 +15500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245637508719684140, guid: 6725bfb5520367847ba0bc14eded7b23, type: 3}
       propertyPath: m_TagString
-      value: DeathTrigger
+      value: PlantTrap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20151,7 +20151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937290810}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07586222, y: 0.9204666, z: -0.22489096, w: 0.31049997}
+  m_LocalRotation: {x: 0.07593169, y: 0.92037064, z: -0.22486752, w: 0.3107843}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20520,7 +20520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07586222, y: 0.9204666, z: -0.22489098, w: 0.31049994}
+  m_LocalRotation: {x: 0.07593167, y: 0.9203707, z: -0.22486752, w: 0.31078425}
   m_LocalPosition: {x: 910.7149, y: 567.79, z: 455.92746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -23048,7 +23048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245637508719684140, guid: 6725bfb5520367847ba0bc14eded7b23, type: 3}
       propertyPath: m_TagString
-      value: DeathTrigger
+      value: PlantTrap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27344,7 +27344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7090293826092455440, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
       propertyPath: jumpForce
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7090293826092455440, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
       propertyPath: baseRunSpeed
@@ -28014,7 +28014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245637508719684140, guid: 6725bfb5520367847ba0bc14eded7b23, type: 3}
       propertyPath: m_TagString
-      value: DeathTrigger
+      value: PlantTrap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28232,7 +28232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245637508719684140, guid: 6725bfb5520367847ba0bc14eded7b23, type: 3}
       propertyPath: m_TagString
-      value: DeathTrigger
+      value: PlantTrap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28391,7 +28391,7 @@ Transform:
   m_GameObject: {fileID: 1358817143}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 939.92, y: 536.3089, z: 716.57}
+  m_LocalPosition: {x: 939.92, y: 525.3, z: 716.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32112,7 +32112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245637508719684140, guid: 6725bfb5520367847ba0bc14eded7b23, type: 3}
       propertyPath: m_TagString
-      value: DeathTrigger
+      value: PlantTrap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40038,7 +40038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245637508719684140, guid: 6725bfb5520367847ba0bc14eded7b23, type: 3}
       propertyPath: m_TagString
-      value: DeathTrigger
+      value: PlantTrap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

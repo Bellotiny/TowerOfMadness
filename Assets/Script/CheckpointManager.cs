@@ -25,7 +25,7 @@ public class CheckpointManager : MonoBehaviour
     public void SetCheckpoint(Vector3 position)
     {
         lastCheckpoint = position;
-        //Debug.Log("Checkpoint set at: " + position);
+        Debug.Log("Checkpoint set at: " + position);
     }
 
     public Vector3 GetCheckpoint()
