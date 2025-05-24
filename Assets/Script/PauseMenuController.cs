@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class PauseMenuController : MonoBehaviour
 {
+    public static PauseMenuController Instance { get; private set; }
     [SerializeField] private GameObject pauseMenuPanel; 
     private bool isPaused = false;
 
+    void Awake()
+    {
+         if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); 
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

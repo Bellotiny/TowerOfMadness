@@ -46,11 +46,14 @@ public class PlayerController : MonoBehaviour
         }
         if (movement.IsGrounded && rb.velocity.magnitude > 0.1f)
         {
-            if (!audioSource.isPlaying)
-                {
-                    Debug.Log("walking sound");
-                    audioSource.PlayOneShot(footstepSound);
-                }
+            if (audioSource != null) {
+                if (!audioSource.isPlaying)
+            {
+                Debug.Log("walking sound");
+                audioSource.PlayOneShot(footstepSound);
+            }
+            }
+            
         }
     }
     public void EnableHitbox()

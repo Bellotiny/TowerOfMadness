@@ -21,7 +21,7 @@ public class HitDetector : MonoBehaviour
         EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("PracEnemy"))
         {
             EnemyController ec = other.GetComponentInParent<EnemyController>();
             MobEnemyController mec = other.GetComponentInParent<MobEnemyController>();

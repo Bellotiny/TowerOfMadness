@@ -9,15 +9,52 @@ public class ScoreCollection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         string tag = other.tag;
-        if (tag == "Apple" || tag == "Watermelon" || tag == "Orb")
+        if (tag == "Apple" || tag == "Watermelon")
         {
+            //Debug.Log(tag);
             ScoreManager.Instance.AddScore(score);
-            InventoryManager.Instance.AddItem(tag);
+
             //AudioParticleController.Instance.PlaySoundEffect("Pickup", other.transform.position);
-            Destroy(other.gameObject);
+
             //Debug.Log("" + score);
             //GameManager.Instance.UpdatePickupText("+ 50");
+            InventoryManager.Instance.AddItem(tag);
+            Destroy(other.gameObject);
         }
+
+        if (tag == "Orb")
+        {
+            ScoreManager.Instance.AddOrb();
+            InventoryManager.Instance.AddItem(tag);
+            Destroy(other.gameObject);
+        }
+
+        else if (tag == "DoorKey")
+        {
+            Destroy(other.gameObject);
+            WallController wall = FindObjectOfType<WallController>();
+
+            if (wall != null)
+            {
+                wall.OpenAndCloseWall(2f);
+            }
+
+
+        }
+
+        if (tag == "Inventory")
+        {
+            InventoryMenuController inventoryMenu = FindObjectOfType<InventoryMenuController>();
+            if (inventoryMenu != null)
+            {
+                inventoryMenu.EnableInventoryAccess();// this enabes the inventory 
+            }
+
+            Destroy(other.gameObject);
+            
+        }
+
+        
        
        
 

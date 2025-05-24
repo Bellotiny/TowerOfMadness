@@ -6,17 +6,28 @@ public class InventoryMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel;
     private bool isInventoryVisible = false;
+    private bool canOpenInventory = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (canOpenInventory && Input.GetKeyDown(KeyCode.I))
         {
-            isInventoryVisible = !isInventoryVisible;
-            inventoryPanel.SetActive(isInventoryVisible);
-
-            if (isInventoryVisible)
-                InventoryManager.Instance.RefreshUI();
+            ToggleInventory();
         }
+    }
+
+     public void ToggleInventory()
+    {
+        isInventoryVisible = !isInventoryVisible;
+        inventoryPanel.SetActive(isInventoryVisible);
+
+        if (isInventoryVisible)
+            InventoryManager.Instance.RefreshUI();
+    }
+
+    public void EnableInventoryAccess()
+    {
+        canOpenInventory = true;
     }
     
     
