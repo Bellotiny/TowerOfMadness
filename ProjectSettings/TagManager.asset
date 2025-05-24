@@ -24,6 +24,7 @@ TagManager:
   - Orb
   - Weapon
   - Axe
+  - MusicPlayer
   layers:
   - Default
   - TransparentFX
