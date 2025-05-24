@@ -27,6 +27,7 @@ TagManager:
   - PracEnemy
   - WallToOpen
   - Watermelon
+  - Inventory
   layers:
   - Default
   - TransparentFX
