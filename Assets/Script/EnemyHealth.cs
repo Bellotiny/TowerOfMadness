@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -19,11 +21,14 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage){
         currentHealth -= damage;
+        Vector3 randomness = new Vector3(Random.Range(0f, 1.0f), Random.Range(0f, 1.0f), Random.Range(0f, 1.0f));
+        DamagePopUpGenerator.current.CreatePopUp(transform.position + randomness, damage.ToString(), Color.red);
         //animator.SetTrigger("GotHit");
         // Debug.Log("Spider Got Hit!!");
         // Debug.Log("Spider Health: " + currentHealth);
         //healthbar.value = currentHealth;
-        if(currentHealth <= 0){
+        if (currentHealth <= 0)
+        {
             Die();
         }
     }
@@ -35,7 +40,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            Debug.Log("No animator found for enemy");
+            UnityEngine.Debug.Log("No animator found for enemy");
         }
         
     }
