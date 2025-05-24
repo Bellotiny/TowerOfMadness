@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class MobEnemyController : EnemyController
 {
     public static List<MobEnemyController> activeMobs = new List<MobEnemyController>();
-    private ParticleSystem hitParticles;
     //private AudioSource audioSource;
     protected override void Start()
     {
@@ -25,6 +24,7 @@ public class MobEnemyController : EnemyController
         if (StateMachine == null)
         Debug.LogError("Mob's StateMachine is null!");
     }
+    
     public override void GotHit()
     {
         //hitParticles.Play();
