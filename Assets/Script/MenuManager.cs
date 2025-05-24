@@ -5,15 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject mainMenuPanel;
+    [SerializeField]
+    private GameObject controlsMenuPanel;
+    private bool isControlMenuActive = false;
+
     public void StartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && isControlMenuActive)
+        {
+            MenuBack();
+        }
+    }
+
     public void Control()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        mainMenuPanel.SetActive(false);
+        controlsMenuPanel.SetActive(true);
+        isControlMenuActive = true;
+    }
+
+    public void MenuBack()
+    {
+        controlsMenuPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+        isControlMenuActive = false;
     }
 
     public void QuitGame()
@@ -25,7 +48,7 @@ public class MainMenuController : MonoBehaviour
         // SceneManager.LoadScene("MainMenu");
     }
 
-    
 
-    
+
+
 }

@@ -28,6 +28,7 @@ TagManager:
   - WallToOpen
   - Watermelon
   - Inventory
+  - MusicPlayer
   layers:
   - Default
   - TransparentFX
