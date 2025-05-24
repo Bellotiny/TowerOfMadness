@@ -85,7 +85,7 @@ public class CharacterMovement : MonoBehaviour
         {
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
-            //doFlip = false;  // Stop flip animation when grounded
+            doFlip = false;  // Stop flip animation when grounded
             isInAir = false;
         }
         

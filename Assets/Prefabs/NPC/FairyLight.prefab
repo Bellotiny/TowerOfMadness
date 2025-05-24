@@ -184,7 +184,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 869589422072644857, guid: 7cf77ffe8f6074c5d8ef2dafe04b8c31, type: 3}
       propertyPath: m_text
-      value: Path is blocked
+      value: Find the key on these jar
       objectReference: {fileID: 0}
     - target: {fileID: 869589422072644857, guid: 7cf77ffe8f6074c5d8ef2dafe04b8c31, type: 3}
       propertyPath: m_margin.x
