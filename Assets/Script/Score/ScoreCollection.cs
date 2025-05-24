@@ -36,10 +36,22 @@ public class ScoreCollection : MonoBehaviour
 
             if (wall != null)
             {
-                wall.OpenAndCloseWall(2f); // Pass the wait time before the wall closes again
+                wall.OpenAndCloseWall(2f);
             }
 
 
+        }
+
+        if (tag == "Inventory")
+        {
+            InventoryMenuController inventoryMenu = FindObjectOfType<InventoryMenuController>();
+            if (inventoryMenu != null)
+            {
+                inventoryMenu.EnableInventoryAccess();// this enabes the inventory 
+            }
+
+            Destroy(other.gameObject);
+            
         }
 
         
