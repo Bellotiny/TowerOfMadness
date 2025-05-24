@@ -54,7 +54,7 @@ public class CharacterMovement : MonoBehaviour
     /// Checks if the character is currently grounded using a Raycast.
     /// If false, the character is in the air.
     /// </summary>
-    public bool IsGrounded => 
+    public bool IsGrounded =>
         Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, groundCheckDistance);
 
     private bool isInAir = false;
@@ -85,10 +85,10 @@ public class CharacterMovement : MonoBehaviour
         {
             //Debug.Log("Resetting jump count and flip after landing.");
             jumpCount = 0;  // Reset jump count after landing
-            //doFlip = false;  // Stop flip animation when grounded
+            doFlip = false;  // Stop flip animation when grounded
             isInAir = false;
         }
-        
+
         RegisterInput(); // Collect player input
     }
 
@@ -109,7 +109,8 @@ public class CharacterMovement : MonoBehaviour
     private void InitializeComponents()
     {
         animator = GetComponent<Animator>();
-        if (animator == null){
+        if (animator == null)
+        {
             Debug.LogError("Animator component missing!");
         }
         animator.applyRootMotion = false;
@@ -119,14 +120,16 @@ public class CharacterMovement : MonoBehaviour
 
         sword = sword.transform.Find("SwordParent/Sword").gameObject;
         axe = axe.transform.Find("AxeParent/Axe").gameObject;
-        if (!sword || !axe || !holster) {
+        if (!sword || !axe || !holster)
+        {
             Debug.LogError("Weapon references not assigned in the Inspector!");
         }
         axe.SetActive(false);
         sword.SetActive(false);
         holsteredSword = holster.transform.Find("Holstered Sword").gameObject;
         holsteredAxe = holster.transform.Find("Holstered Axe").gameObject;
-        if (!holsteredSword || !holsteredAxe) {
+        if (!holsteredSword || !holsteredAxe)
+        {
             Debug.LogError("Holstered weapons not found under holster.");
         }
         holsteredSword.SetActive(true);
@@ -165,11 +168,13 @@ public class CharacterMovement : MonoBehaviour
             IsRunning = !IsRunning;
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        {
             //Debug.Log("Key 1 pressed!");
             ToggleSword();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)){
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
             //Debug.Log("Key 2 pressed!");
             ToggleAxe();
         }
@@ -178,10 +183,12 @@ public class CharacterMovement : MonoBehaviour
         {
             Dash();
         }
-        if(Input.GetKeyDown(KeyCode.E)){
+        if (Input.GetKeyDown(KeyCode.E))
+        {
             SlashAttack();
         }
-        if(Input.GetKeyDown(KeyCode.R)){
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             ComboAttack();
         }
     }
@@ -233,7 +240,8 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void HandleJump()
     {
-        if(jumpRequest){
+        if (jumpRequest)
+        {
             Debug.Log("There was a jumpRequest!!!!!!!");
             Debug.Log("IsGrounded: " + IsGrounded);
             Debug.Log("isInAir: " + isInAir);
@@ -256,7 +264,8 @@ public class CharacterMovement : MonoBehaviour
             jumpRequest = false; // Reset jump request after applying jump
             doFlip = true;
             //Debug.Log("First jump executed!!!!!!!!!!!!");
-        }else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
+        }
+        else if (jumpRequest && jumpCount == 1 && doFlip && (Time.time - lastJumpTime) <= jumpTimeWindow)
         {
             // SECOND JUMP (Flip)
             Vector3 currentVelocity = rb.velocity;
@@ -297,13 +306,13 @@ public class CharacterMovement : MonoBehaviour
         if (isDashing) return;
         // Determine movement speed (walking or running)
         float speed = IsRunning ? baseRunSpeed : baseWalkSpeed;
-        
+
         // Set ground speed value for animation purposes
         groundSpeed = (moveDirection != Vector3.zero) ? speed : 0.0f;
 
         // Preserve the current Y velocity to maintain gravity effects
         Vector3 newVelocity = new Vector3(
-            moveDirection.x * speed * speedMultiplier, 
+            moveDirection.x * speed * speedMultiplier,
             rb.velocity.y, // Keep the existing Y velocity for jumping & gravity
             moveDirection.z * speed * speedMultiplier
         );
@@ -313,19 +322,25 @@ public class CharacterMovement : MonoBehaviour
         //rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime); // valid for kinematic
 
     }
-    private void ToggleSword(){
+    private void ToggleSword()
+    {
         isSwordEquipped = !isSwordEquipped;
-        if (isSwordEquipped){
+        if (isSwordEquipped)
+        {
             // Deactivate Axe
             isAxeEquipped = false;
             axe.SetActive(false);
             holsteredAxe.SetActive(true);
+
+            // Activate Sword
             //Debug.Log("Equip Sword");
             holsteredSword.SetActive(false);
             sword.SetActive(true);
             animator.SetTrigger("EquipSword");
             animator.SetBool("IsSwordEquipped", true);
-        } else {
+        }
+        else
+        {
             //Debug.Log("Sheathe Sword");
             animator.SetTrigger("SheathSword");
             animator.SetBool("IsSwordEquipped", false);
@@ -333,10 +348,12 @@ public class CharacterMovement : MonoBehaviour
             holsteredSword.SetActive(true);
         }
     }
-    private void ToggleAxe(){
+    private void ToggleAxe()
+    {
         isAxeEquipped = !isAxeEquipped;
-        if (isAxeEquipped){
-            
+        if (isAxeEquipped)
+        {
+
             isSwordEquipped = false;
             sword.SetActive(false);
             holsteredSword.SetActive(true);
@@ -345,7 +362,9 @@ public class CharacterMovement : MonoBehaviour
             axe.SetActive(true);
             animator.SetTrigger("EquipAxe");
             animator.SetBool("IsAxeEquipped", true);
-        } else {
+        }
+        else
+        {
             //Debug.Log("Disarm Axe");
             animator.SetTrigger("DisarmAxe");
             animator.SetBool("IsAxeEquipped", false);
@@ -372,9 +391,12 @@ public class CharacterMovement : MonoBehaviour
 
         }
     }
-    private void ComboAttack(){
-        if(animator != null){
-            if(isSwordEquipped){
+    private void ComboAttack()
+    {
+        if (animator != null)
+        {
+            if (isSwordEquipped)
+            {
                 Debug.Log("DoSwordAttack2");
                 animator.SetTrigger("DoSwordAttack2");
             }
@@ -385,9 +407,10 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
-    private void Dash(){
+    private void Dash()
+    {
         if (Time.time - lastDashTime < dashCooldown || moveDirection == Vector3.zero || isDashing)
-        return;
+            return;
 
         StartCoroutine(PerformDash());
     }

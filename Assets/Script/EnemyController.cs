@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     public Animator animator;
     private EnemyMovement movement;
-    private EnemyHealth health;
+    private EnemyHealth enemyHealth;
     private ParticleSystem hitParticles;
     public StateMachine StateMachine { get; private set; }
     public NavMeshAgent Agent { get; private set; }
@@ -22,11 +22,11 @@ public class EnemyController : MonoBehaviour
     public MobEnemyController[] mobEnemies;
     public int damageTaken { get; protected set; } = 20;
     public bool isMob = false;
-    //private AudioSource audioSource;
+    private AudioSource audioSource;
     protected virtual void Start()
     {
         animator = GetComponent<Animator>();
-        health = GetComponent<EnemyHealth>();
+        enemyHealth = GetComponent<EnemyHealth>();
         movement = GetComponent<EnemyMovement>();
         hitParticles = GetComponent<ParticleSystem>();
         Agent = GetComponent<NavMeshAgent>();
@@ -66,7 +66,8 @@ public class EnemyController : MonoBehaviour
             return;
         }
     }
-    public bool CanSeePlayer(){
+    public bool CanSeePlayer()
+    {
         float distanceToPlayer = Vector3.Distance(transform.position,
         Player.position);
 
@@ -83,8 +84,8 @@ public class EnemyController : MonoBehaviour
         Player.position);
         return distanceToPlayer <= AttackRange;
     }
-    
-  
+
+
     public virtual void GotHit()
     {
         if (isHit) return;
@@ -94,9 +95,10 @@ public class EnemyController : MonoBehaviour
     protected IEnumerator HandleHit()
     {
         isHit = true;
-        hitParticles.Play();
+        enemyHealth.TakeDamage(damageTaken);
         animator.SetTrigger("GotHit");
-        // health.TakeDamage(damageTaken);
+        hitParticles.Play();
+        // audioSource.Play();
         Agent.isStopped = true;
 
         yield return new WaitForSeconds(0.5f);
