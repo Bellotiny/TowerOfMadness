@@ -6,7 +6,7 @@
     	},
 		{
 		"speaker": "T.O.M.",
-		"text": "You woke up late, Gustavo. But not too late."
+		"text": "You woke up late. But not too late."
 		},
 		{
 		"speaker": "Gustavo",
@@ -30,7 +30,15 @@
 		},
 		{
 		"speaker": "T.O.M.",
-		"text": "I can help you break out of these cells"
+		"text": "I can help you break out of these cells."
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "Remember to break vases as 'KEY' items can be found."
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "We'll meet again."
 		}
 	]
 }

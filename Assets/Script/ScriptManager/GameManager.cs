@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
             ScoreManager.Instance.SaveScore();
             ScoreManager.Instance.ResetOrbCount();
             CheckpointManager.Instance.ResetCheckpointState();//reset checkpount
+            DialogueTrigger.ClearTriggeredFiles();
 
             //SceneManager.LoadScene(nextSceneIndex);
             StartCoroutine(LoadSceneAndResetPlayer(nextSceneIndex));//delay for a bit

@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (isDialogueActive && Input.GetMouseButtonDown(0)) // Left click
+        if (isDialogueActive && Input.GetMouseButtonDown(0))
         {
             ShowNextLine();
         }
