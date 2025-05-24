@@ -124,6 +124,10 @@ public class GameManager : MonoBehaviour
         {
             LoadNextLevel();
         }
+        else if (SceneManager.GetActiveScene().name == "Level0" && enemies.Length == 0 && orbs == 1)
+        {
+            LoadNextLevel();
+        }
     }
 
     private void LoadNextLevel()

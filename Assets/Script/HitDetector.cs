@@ -15,6 +15,9 @@ public class HitDetector : MonoBehaviour
     private void Start()
     {
         parentEnemyController = GetComponentInParent<EnemyController>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            Debug.LogWarning("AudioSource not found on HitDetector!");
         //enemyController = GetComponent<EnemyController>();
     }
 
@@ -31,7 +34,10 @@ public class HitDetector : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(20);
-                audioSource.PlayOneShot(swordSound);
+                if (audioSource != null && swordSound != null)
+                {
+                    audioSource.PlayOneShot(swordSound);
+                }
             }
             else
             {

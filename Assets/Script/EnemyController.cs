@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         StateMachine.AddState(new ChaseState(this));
         StateMachine.AddState(new AttackState(this));
         StateMachine.TransitionToState(StateType.Idle);
-        //audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected virtual void Update()

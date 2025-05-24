@@ -21257,6 +21257,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 84.918
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b1fe3332752043b479abb58bb468296f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6478536213147159724, guid: 1df5b5173288f664fa9a66789b21d52e, type: 3}
     - target: {fileID: 919132149155446097, guid: b1fe3332752043b479abb58bb468296f, type: 3}
       propertyPath: m_Name
       value: Holstered Axe
@@ -27079,6 +27083,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2238276474927746779, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
+      propertyPath: footstepSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 92ba6ec5039b7984ab29299a8aa9c378, type: 3}
+    - target: {fileID: 2238276474927746779, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
       propertyPath: fallThresholdY
       value: -12
       objectReference: {fileID: 0}
@@ -27180,7 +27188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7090293826092455440, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
       propertyPath: jumpForce
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7090293826092455440, guid: 254ddc73ef9d13640b6277166a0f36d9, type: 3}
       propertyPath: baseRunSpeed
