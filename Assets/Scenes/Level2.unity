@@ -15600,7 +15600,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2659251030592858700, guid: 30d6a3af02b1d7e4abb44656f544b79e, type: 3}
       propertyPath: dialogueFileName
-      value: middle_dialogue
+      value: level2_dialogue
       objectReference: {fileID: 0}
     - target: {fileID: 4566717279504709785, guid: 30d6a3af02b1d7e4abb44656f544b79e, type: 3}
       propertyPath: m_Name

@@ -9049,7 +9049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398708998}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.004603079, y: 0.983255, z: -0.18044183, w: -0.025082879}
+  m_LocalRotation: {x: -0.00451551, y: 0.98326707, z: -0.18044405, w: -0.024605703}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21607,7 +21607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.004603101, y: 0.983255, z: -0.18044186, w: -0.025082996}
+  m_LocalRotation: {x: -0.0045155105, y: 0.98326707, z: -0.18044408, w: -0.0246057}
   m_LocalPosition: {x: -26.346619, y: 3.505, z: 51.350056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48143,6 +48143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2659251030592858700, guid: 30d6a3af02b1d7e4abb44656f544b79e, type: 3}
+      propertyPath: dialogueFileName
+      value: level1_dialogue
+      objectReference: {fileID: 0}
     - target: {fileID: 4566717279504709785, guid: 30d6a3af02b1d7e4abb44656f544b79e, type: 3}
       propertyPath: m_Name
       value: TriggerDialogue

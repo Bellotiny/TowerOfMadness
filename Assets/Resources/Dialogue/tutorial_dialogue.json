@@ -1,0 +1,36 @@
+{
+	"lines":[
+		{
+		"speaker": "Gustavo",
+		"text": "...Where am I?"
+    	},
+		{
+		"speaker": "T.O.M.",
+		"text": "You woke up late, Gustavo. But not too late."
+		},
+		{
+		"speaker": "Gustavo",
+		"text": "Who's there? Show yourself!"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "If I had a face, would you trust it? If I had hands, would you follow them?"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "This place chews up the desperate. But you’re not desperate… yet."
+		},
+		{
+		"speaker": "Gustavo",
+		"text": "Tell me what this place is!"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "Hell has many names. This oneis reffered to as 'Tower Of Madness'."
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "I can help you break out of these cells"
+		}
+	]
+}
