@@ -63,7 +63,7 @@ public class PauseMenuController : MonoBehaviour
         //InventoryMenuController.Instance.EnableInventoryAccess(); 
         pauseMenuPanel.SetActive(false);
          Time.timeScale = 1.0f;
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("MainScreen");
     }
     public void RestartLevel()
     {
