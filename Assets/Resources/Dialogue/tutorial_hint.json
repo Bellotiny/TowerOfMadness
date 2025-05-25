@@ -1,12 +1,16 @@
 {
 	"lines":[
 		{
-		"speaker": "Gustavo",
-		"text": "TOMM!! WHERE MY HINT AT?"
-    	},
+		"speaker": "T.O.M.",
+		"text": "(HINT) Find a bag hidden in the left most jars"
+		},
 		{
 		"speaker": "T.O.M.",
-		"text": "OH HEEELLLL NAHHH"
+		"text": "(HINT) Make sure to gather the most orbs possible"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "(HINT) It is one of the keys to getting out of here"
 		}
 	]
 }

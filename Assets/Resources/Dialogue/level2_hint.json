@@ -1,12 +1,24 @@
 {
 	"lines":[
 		{
-		"speaker": "Gustavo",
-		"text": "TOMM!! WHERE MY HINT AT?"
-    	},
+		"speaker": "T.O.M.",
+		"text": "(HINT) Get ready."
+		},
 		{
 		"speaker": "T.O.M.",
-		"text": "OH HEEELLLL NAHHH"
+		"text": "(HINT) You're next battle is passed that wall."
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "(HINT) The mechanisms should still be holding up"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "(HINT) As such getting closer to the walls or collecting more orbs should activate it"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "GOOD LUCK!!"
 		}
 	]
 }
