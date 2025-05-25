@@ -56,11 +56,14 @@ public class PauseMenuController : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
         isPaused = false;
-        //ScoreManager.Instance.SubtractScore();
-        //TrapManager.Instance.RestoreLives();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ScoreManager.Instance.ResetScore();
+        TrapManager.Instance.RestoreLives();
+        //InventoryMenuController.Instance.EnableInventoryAccess(); 
+        pauseMenuPanel.SetActive(false);
+         Time.timeScale = 1.0f;
+        SceneManager.LoadScene("MainScreen");
     }
     public void RestartLevel()
     {

@@ -50,6 +50,7 @@ public class ScoreManager : MonoBehaviour
     {
         totalScore = 0;
         levelScore = 0;
+        ResetOrbCount();
         OnFoodScoreChanged?.Invoke(totalScore);
     }
     public void AddOrb()
