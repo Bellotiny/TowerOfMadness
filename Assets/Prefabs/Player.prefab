@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f020f902f3095e14b8a199e7ea7dd568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordSound: {fileID: 0}
 --- !u!1 &4834024045021743730
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,10 +209,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 4239061376340334451}
+  axe: {fileID: 0}
   holster: {fileID: 8240353817087193886}
-  baseWalkSpeed: 4
-  baseRunSpeed: 6
+  baseWalkSpeed: 8
+  baseRunSpeed: 15
   rotationSpeed: 10
+  dashForce: 20
+  dashCooldown: 1
+  dashDuration: 0.2
   jumpForce: 4
   groundCheckDistance: 0.8
   speedMultiplier: 1
@@ -273,8 +278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139986c7adaeaf24eb0135995051fc25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallThresholdY: -25
   attackColliders:
   - {fileID: 1184933832582710776}
+  footstepSound: {fileID: 0}
 --- !u!114 &4260788670137483917
 MonoBehaviour:
   m_ObjectHideFlags: 0

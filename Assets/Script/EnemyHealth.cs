@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage){
         currentHealth -= damage;
         Vector3 randomness = new Vector3(Random.Range(0f, 1.0f), Random.Range(0f, 1.0f), Random.Range(0f, 1.0f));
-        //DamagePopUpGenerator.current.CreatePopUp(transform.position + randomness, damage.ToString(), Color.red);
+        DamagePopUpGenerator.current.CreatePopUp(transform.position + randomness, damage.ToString(), Color.red);
         //animator.SetTrigger("GotHit");
         // Debug.Log("Spider Got Hit!!");
         // Debug.Log("Spider Health: " + currentHealth);
