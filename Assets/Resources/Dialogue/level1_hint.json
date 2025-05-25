@@ -1,12 +1,24 @@
 {
 	"lines":[
 		{
-		"speaker": "Gustavo",
-		"text": "TOMM!! WHERE MY HINT AT?"
-    	},
+		"speaker": "T.O.M.",
+		"text": "(HINT) Make sure you've collected at least 2 orbs."
+		},
 		{
 		"speaker": "T.O.M.",
-		"text": "OH HEEELLLL NAHHH"
+		"text": "(HINT) That is if you want to get out of here."
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "(HINT) Watchout for sudden environmental changes like earthquakes"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "(HINT) Make sure to defeat all monsters"
+		},
+		{
+		"speaker": "T.O.M.",
+		"text": "Good luck"
 		}
 	]
 }
